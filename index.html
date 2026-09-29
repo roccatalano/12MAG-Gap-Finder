@@ -136,7 +136,9 @@ footer{color:var(--muted);font-size:.82rem;max-width:70ch}
 .ov-tbl td{border-bottom:1px solid var(--line,#ddd);padding:6px 4px;vertical-align:top}
 .ov-tbl tbody tr{cursor:pointer}.ov-tbl tbody tr:hover{background:rgba(127,127,127,.1)}
 .ov-scroll{overflow-x:auto}.ov-tbl.res tbody tr{cursor:default}.ov-tbl.res tr.rw td{background:rgba(192,57,43,.06)}.ov-tbl .chip{white-space:nowrap}
-.ov-sc text{fill:currentColor;font-size:11px}
+.ov-sc text{fill:currentColor;font-size:11px}.ov-sc g.dot title{display:none}
+.sctip{position:absolute;width:260px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.85rem;line-height:1.35;box-shadow:0 4px 14px rgba(0,0,0,.18);pointer-events:none;z-index:5}
+.ov-sc g.dot:hover circle{stroke:currentColor;stroke-width:2}
 @media(max-width:560px){.ov-tbl{font-size:.78rem}.ov-tbl th{white-space:normal}.ov-tbl td:first-child{min-width:120px}}
 </style>
 
@@ -356,7 +358,7 @@ const bar=Object.entries(A).map(([a,m])=>`<div style="width:${m/tot*100}%;backgr
 const leg=Object.entries(A).map(([a,m])=>`<span><i style="background:${AOSC[a]}"></i>${esc(a)} (${Math.round(m/tot*100)}%)</span>`).join("");
 // scatter
 const W=560,H=320,L=62,B=34,Tp=10,Rt=12;const XM=Math.max(...R.map(r=>r.sh))*1.08;const xs=v=>L+v/XM*(W-L-Rt-30),ys=s=>Tp+(1-s)*(H-Tp-B);
-let pts=R.filter(r=>r.s!=null&&r.f.n>0).map(r=>{const j=0;return `<g style="cursor:pointer" onclick="goTopic('${r.c}')"><circle cx="${xs(r.sh)+j}" cy="${ys(r.s)}" r="6" fill="${AOSC[r.T.aos]}" fill-opacity=".75" stroke="#fff"/><title>${r.c} ${esc(r.T.name)}: ${r.f.n}/${nP} sittings, avg ${Math.round(r.s*100)}%</title><text x="${xs(r.sh)+j+7}" y="${ys(r.s)+4}">${r.c}</text></g>`}).join("");
+let pts=R.filter(r=>r.s!=null&&r.f.n>0).map(r=>{const j=0;return `<g class="dot" data-c="${r.c}" style="cursor:pointer"><circle cx="${xs(r.sh)+j}" cy="${ys(r.s)}" r="6" fill="${AOSC[r.T.aos]}" fill-opacity=".75" stroke="#fff"/><text x="${xs(r.sh)+j+7}" y="${ys(r.s)+4}">${r.c}</text></g>`}).join("");
 const mx=xs(0.03),my=ys(.6);
 const sc=`<svg class="ov-sc" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="How often each topic appears vs how students go">
 <rect x="${mx}" y="${Tp}" width="${W-Rt-mx}" height="${my-Tp}" fill="#2e8b57" fill-opacity=".08"/><rect x="${mx}" y="${my}" width="${W-Rt-mx}" height="${H-B-my}" fill="#c0392b" fill-opacity=".08"/>
@@ -379,10 +381,18 @@ const tt=Object.keys(TT).map(k=>{const w=D.qs.filter(q=>q.t===k&&q.s!=null);cons
 const hard=D.qs.filter(q=>q.s!=null).sort((a,b)=>a.s-b.s).slice(0,5).map(q=>`<li><a href="#" onclick="goQ('${q.p}','${q.q}');return false">${esc(q.p)} Q${esc(q.q)}</a>: ${esc(D.topics[q.c].name)} (${q.c}), ${Math.round(q.s*100)}% average</li>`).join("");
 $("out").innerHTML=`<section class="card"><h2>What's on the exam</h2><p>Based on ${D.qs.length} questions from ${papers.length} papers (${nP} sittings, 2023 onwards, including NHT and the VCAA sample). Every topic in the study design can be examined, even ones that haven't come up yet.</p></section>
 <section class="card"><h3>Where the marks are</h3><div class="ov-bar">${bar}</div><div class="ov-leg">${leg}</div></section>
-<section class="card"><h3>Marks vs how students go</h3><p class="tiermean">Each dot is a topic. Further right = worth more marks overall. Lower = students score worse. Tap a dot to open the topic.</p><div class="ov-scroll"><div style="min-width:520px">${sc}</div></div></section>
+<section class="card"><h3>Marks vs how students go</h3><p class="tiermean">Each dot is a topic. Further right = worth more marks overall. Lower = students score worse. Tap a dot to open the topic.</p><div class="ov-scroll"><div id="scwrap" style="min-width:520px;position:relative">${sc}<div id="sctip" class="sctip" hidden></div></div></div></section>
 <section class="card"><h3>Every topic</h3><p class="tiermean">Tap a heading to sort. Tap a row to see videos, textbook tasks and past questions.</p><div class="ov-scroll"><table class="ov-tbl"><thead><tr>${th("c","Topic")}${th("n","How often")}${th("sh","Share of marks")}${th("s","Average score")}</tr></thead><tbody>${tb}</tbody></table></div></section>
 <section class="card"><h3>By type of question</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">${tt}</div></section>
-<section class="card"><h3>The 5 hardest questions</h3><ol>${hard}</ol></section>`}
+<section class="card"><h3>The 5 hardest questions</h3><ol>${hard}</ol></section>`;
+const tip=$("sctip"),wrap=$("scwrap");let tipC=null,lastPT="mouse";
+const show=(g,ev)=>{const c=g.dataset.c,r=R.find(x=>x.c===c);tipC=c;
+ tip.innerHTML=`<b>${c} ${esc(r.T.name)}</b><br>${(r.sh*100).toFixed(1)}% of exam marks · average ${Math.round(r.s*100)}%<br><span class="hint">${lastPT==="mouse"?"Click":"Tap again"} to open this topic</span>`;
+ tip.hidden=false;const wr=wrap.getBoundingClientRect(),gr=g.getBoundingClientRect();
+ let x=gr.left-wr.left+gr.width/2,y=gr.top-wr.top;tip.style.left=Math.max(0,Math.min(x-130,wr.width-270))+"px";tip.style.top=(y>90?y-tip.offsetHeight-8:y+gr.height+8)+"px"};
+wrap.querySelectorAll("g.dot").forEach(g=>{g.addEventListener("pointerenter",e=>{if(e.pointerType==="mouse"){lastPT="mouse";show(g,e)}});g.addEventListener("pointerleave",e=>{if(e.pointerType==="mouse"){tip.hidden=true;tipC=null}});
+ g.addEventListener("pointerdown",e=>{lastPT=e.pointerType});g.addEventListener("click",e=>{if(lastPT!=="mouse"&&tipC!==g.dataset.c){show(g,e);return}goTopic(g.dataset.c)})});
+}
 function ovSortBy(k){ovSort=ovSort.k===k?{k,d:-ovSort.d}:{k,d:k==="c"?1:-1};overview()}
 function goTopic(c){$("topic").value=c;setMode("t");window.scrollTo(0,0)}
 function goQ(p,q){$("paper").value=p;fillQ();$("qnum").value=q;setMode("q");window.scrollTo(0,0)}
