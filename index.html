@@ -355,7 +355,7 @@ const A={};R.forEach(r=>{A[r.T.aos]=(A[r.T.aos]||0)+r.m});
 const bar=Object.entries(A).map(([a,m])=>`<div style="width:${m/tot*100}%;background:${AOSC[a]}" title="${esc(a)}">${Math.round(m/tot*100)}%</div>`).join("");
 const leg=Object.entries(A).map(([a,m])=>`<span><i style="background:${AOSC[a]}"></i>${esc(a)} (${Math.round(m/tot*100)}%)</span>`).join("");
 // scatter
-const W=560,H=320,L=44,B=34,Tp=10,Rt=12;const XM=Math.max(...R.map(r=>r.sh))*1.08;const xs=v=>L+v/XM*(W-L-Rt-30),ys=s=>Tp+(1-s)*(H-Tp-B);
+const W=560,H=320,L=62,B=34,Tp=10,Rt=12;const XM=Math.max(...R.map(r=>r.sh))*1.08;const xs=v=>L+v/XM*(W-L-Rt-30),ys=s=>Tp+(1-s)*(H-Tp-B);
 let pts=R.filter(r=>r.s!=null&&r.f.n>0).map(r=>{const j=0;return `<g style="cursor:pointer" onclick="goTopic('${r.c}')"><circle cx="${xs(r.sh)+j}" cy="${ys(r.s)}" r="6" fill="${AOSC[r.T.aos]}" fill-opacity=".75" stroke="#fff"/><title>${r.c} ${esc(r.T.name)}: ${r.f.n}/${nP} sittings, avg ${Math.round(r.s*100)}%</title><text x="${xs(r.sh)+j+7}" y="${ys(r.s)+4}">${r.c}</text></g>`}).join("");
 const mx=xs(0.03),my=ys(.6);
 const sc=`<svg class="ov-sc" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="How often each topic appears vs how students go">
@@ -363,7 +363,8 @@ const sc=`<svg class="ov-sc" viewBox="0 0 ${W} ${H}" width="100%" role="img" ari
 <line x1="${L}" y1="${H-B}" x2="${W-Rt}" y2="${H-B}" stroke="currentColor" stroke-opacity=".4"/><line x1="${L}" y1="${Tp}" x2="${L}" y2="${H-B}" stroke="currentColor" stroke-opacity=".4"/>
 ${[0,.25,.5,.75,1].map(s=>`<text x="${L-6}" y="${ys(s)+4}" text-anchor="end">${s*100}%</text>`).join("")}
 ${[0,.02,.04,.06,.08].filter(v=>v<XM).map(v=>`<text x="${xs(v)}" y="${H-B+15}" text-anchor="middle">${v*100}%</text>`).join("")}
-<text x="${(L+W)/2}" y="${H-3}" text-anchor="middle">Share of all exam marks →</text>
+<text x="${(L+W)/2}" y="${H-6}" text-anchor="middle">Share of all exam marks →</text>
+<text transform="translate(12 ${(Tp+H-B)/2}) rotate(-90)" text-anchor="middle">Average score (state) →</text>
 <text x="${W-Rt-6}" y="${Tp+14}" text-anchor="end" font-weight="700">Lots of marks, most get it right: don't drop these</text>
 <text x="${W-Rt-6}" y="${H-B-8}" text-anchor="end" font-weight="700">Lots of marks and hard: where marks are won</text>
 ${pts}</svg>`;
