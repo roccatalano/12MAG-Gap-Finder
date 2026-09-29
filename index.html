@@ -53,6 +53,7 @@ a.res .t{flex:1;min-width:0}
 a.res .t small{display:block;color:var(--muted)}
 a.res .len{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
 .prompt{width:100%;min-height:220px;font:13px/1.45 var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;resize:vertical}
+a.btn{text-decoration:none;display:inline-block}
 .btn{font:700 .95rem var(--body);background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer;width:fit-content}
 :root[data-theme="dark"] .btn{color:#0B1A18}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0B1A18}}
 .btnrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
@@ -109,6 +110,7 @@ tr.peekrow .paper{max-height:none}
 .gsec h4{margin:0;font:700 .78rem var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .gsec ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
 .gsec a{color:var(--accent);font-weight:600}
+.gsec a.btn{color:#fff}:root[data-theme="dark"] .gsec a.btn{color:#0B1A18}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .gsec a.btn{color:#0B1A18}}
 .pq{display:flex;flex-direction:column;gap:6px}
 .pq .line{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
 .rank{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:inline-grid;place-items:center;font:700 .85rem var(--display)}
@@ -213,7 +215,7 @@ function prompt(code,q){const T=D.topics[code],b=TB[code];
 function promptGuide(code,wrong){const T=D.topics[code],b=TB[code];
   let s=`You are a patient Socratic maths tutor helping a Year 12 VCE General Mathematics student (Units 3 & 4, VCE Mathematics Study Design 2023–2027). Never give me the final answer or do the working for me. Ask me one short question at a time, wait for my reply, and give hints only when I'm stuck.\n\nTHE TOPIC I NEED TO FIX\n- ${T.name}\n\nTHE QUESTIONS I GOT WRONG ON THIS TOPIC\n`;
   wrong.forEach(q=>{s+=`- ${paperLabel(q.p)}, Question ${q.q} (${q.m} mark${q.m>1?"s":""}): ${q.n}. Question type: ${TASK[q.t][0]}.${q.s!=null?` Other students averaged ${pct(q.s)}.`:""}\n`});
-  s+=`- I may attach photos or screenshots of these questions. If there are none, ask me to type out the first question (including any table or diagram values) before we start.\n`;
+  s+=`- I've attached the full exam paper as a PDF. Find the questions listed above in it. If there is no PDF attached, ask me to type out the first question (including any table or diagram values) before we start.\n`;
   const cms=wrong.filter(q=>q.cm);if(cms.length){s+=`\nNOTES FOR THE TUTOR ONLY (from the VCAA examiners' reports; do not reveal the answers):\n`;cms.forEach(q=>s+=`- Q${q.q}: ${q.cm}\n`)}
   s+=`\nTOPIC NOTES FOR THE TUTOR\n- Key ideas: ${b[0]}\n- Common mistakes: ${b[1]}\n- Calculator: ${b[2]} I use a ClassPad (or TI-Nspire) CAS calculator.\n- Exam wording: ${b[3]}\n`;
   s+=`\nHOW TO RUN THE SESSION\n1. Take my questions one at a time. Ask to see my working or answer, then ask questions until we find exactly where my thinking went wrong.\n2. Guide me with questions so that I fix the mistake and solve it myself. Check that I use the correct VCAA wording.\n3. After all my questions, look for a pattern in my mistakes and tell me what it is.\n4. Give me one new, similar question (different numbers and context) to do on my own, then check it.\n5. Finish with a 2–3 line summary I can copy into my bound reference book.`;
@@ -336,7 +338,7 @@ function buildGuide(p,quiet){const qs=paperQs(p),r=RES[p]||{},e1=p.endsWith("E1"
     h+=`<section class="gtopic"><div class="ghead"><span class="rank">${i+1}</span><div><h3>${esc(T.name)}</h3><div class="glost"><span class="chip ${LBL[o.k].c}">${LBL[o.k].l}</span> Lost ${o.marks} mark${o.marks>1?"s":""} · ${chip(o.f)} ${chip(succInfo(o.qs_))}</div><div class="hint" style="margin-top:4px">${LBL[o.k].why}</div></div></div>
       <div class="gsec"><h4>Cambridge skills tested by the questions you got wrong</h4><ul>${tests}</ul>${idx.length?"":'<p class="hint">These questions could not be matched to a specific skill, so all sections for the topic are listed below.</p>'}</div>
       <div class="gsec"><h4>1 · YouTube videos</h4><ul>${vids.join("")}</ul></div>
-      <div class="gsec"><h4>2 · AI tutor</h4><p class="hint">Copy this prompt into ChatGPT, Claude, Gemini or Copilot. Attach photos of the questions you got wrong if you can. It will ask you questions instead of giving answers.</p><details><summary class="hint">See the prompt</summary><textarea class="prompt gp" readonly aria-label="AI tutor prompt for this topic">${esc(promptGuide(o.c,o.qs))}</textarea></details><div class="btnrow"><button class="btn gcopy">Copy AI tutor prompt</button><span class="hint gcopied" aria-live="polite"></span></div></div>
+      <div class="gsec"><h4>2 · AI tutor</h4><p class="hint">Paste the prompt into ChatGPT, Claude, Gemini or Copilot and attach the exam PDF. The prompt tells it which questions you got wrong. It will ask you questions instead of giving answers.</p><details><summary class="hint">See the prompt</summary><textarea class="prompt gp" readonly aria-label="AI tutor prompt for this topic">${esc(promptGuide(o.c,o.qs))}</textarea></details><div class="btnrow"><button class="btn gcopy">1. Copy AI tutor prompt</button><a class="btn" href="exams/${p.replace(/ /g,"_")}.pdf" download="${esc(paperLabel(p))}.pdf">2. Download this exam (PDF)</a><span class="hint gcopied" aria-live="polite"></span></div></div>
       <div class="gsec"><h4>3 · Textbook tasks</h4><ul>${tb.join("")}</ul>${idx.length&&use.length<T.skills.length?`<details><summary class="hint">All sections for this topic</summary><ul>${[...new Set(T.skills.map(k=>k.sec))].map(s=>`<li>Ex ${esc(s)} ${esc(T.skills.find(k=>k.sec===s).title)}</li>`).join("")}</ul></details>`:""}</div>
       <div class="gsec"><h4>4 · Exam questions to practise</h4><ul>${pq.join("")||'<li class="hint">No other past questions on this topic.</li>'}</ul></div></section>`});
   $("guide").innerHTML=h;
