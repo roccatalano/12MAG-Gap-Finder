@@ -1,0 +1,387 @@
+<title>12MAG Gap Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#F5F6F3;--card:#FFFFFF;--ink:#16202E;--muted:#5B6573;--line:#DDE1DA;--accent:#0E6E62;--accent-soft:#E2F1EE;--hl:#FFE98A;
+--good:#2E7D32;--warn:#B26A00;--bad:#C0392B;--must:#F6D1C8;--should:#FBEBB8;--know:#D6EED6;--none:#E4E6E8;
+--display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;--body:"Source Sans 3",ui-sans-serif,system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#12171D;--card:#1A2129;--ink:#E7ECEF;--muted:#9AA6B2;--line:#2C3540;--accent:#4FC3B2;--accent-soft:#18332F;--hl:#5A4B12;--good:#7BC67E;--warn:#F0B35A;--bad:#F08274;--must:#4A2A25;--should:#463C1C;--know:#20381F;--none:#2A3038}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#12171D;--card:#1A2129;--ink:#E7ECEF;--muted:#9AA6B2;--line:#2C3540;--accent:#4FC3B2;--accent-soft:#18332F;--hl:#5A4B12;--good:#7BC67E;--warn:#F0B35A;--bad:#F08274;--must:#4A2A25;--should:#463C1C;--know:#20381F;--none:#2A3038}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body);padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:700}
+h2{font-size:1.25rem;font-weight:700}
+.lede{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.mono{font-family:var(--mono);font-size:.92em}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.picker{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.modes{display:flex;gap:4px;background:var(--bg);border-radius:8px;padding:4px;width:fit-content}
+.modes button{border:0;background:transparent;color:var(--muted);font:600 .95rem var(--body);padding:6px 14px;border-radius:6px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.field{display:flex;flex-direction:column;gap:4px;flex:1 1 200px}
+label{font-weight:600;font-size:.9rem}
+select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
+select:focus-visible,button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{font-size:.85rem;color:var(--muted)}
+.hint a{color:var(--accent)}
+.qhead{display:flex;flex-direction:column;gap:14px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.qref{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.topicline{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.code{font-family:var(--mono);background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:5px;font-size:.9rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.fact{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:4px}
+.fact .v{font-weight:700;font-size:1.05rem}
+.fact .s{font-size:.85rem;color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%}
+.tier{display:inline-block;padding:2px 10px;border-radius:999px;font-weight:700;font-size:.9rem;width:fit-content}
+.tier.Must{background:var(--must)}.tier.Should{background:var(--should)}.tier.Know{background:var(--know)}.tier.Not{background:var(--none)}
+.note{background:var(--bg);border-radius:8px;padding:10px 12px;font-size:.92rem}
+details summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.step{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:12px}
+.stephead{display:flex;gap:12px;align-items:center}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:700 .95rem var(--display)}
+.stephead p{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.links{display:flex;flex-direction:column;gap:8px}
+a.res{display:flex;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:8px;color:var(--ink);text-decoration:none}
+a.res:hover{border-color:var(--accent);background:var(--accent-soft)}
+a.res .k{flex:none;font:700 .72rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);width:92px}
+a.res .t{flex:1;min-width:0}
+a.res .t small{display:block;color:var(--muted)}
+a.res .len{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.prompt{width:100%;min-height:220px;font:13px/1.45 var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;resize:vertical}
+.btn{font:700 .95rem var(--body);background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer;width:fit-content}
+:root[data-theme="dark"] .btn{color:#0B1A18}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0B1A18}}
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.num2{font-variant-numeric:tabular-nums;white-space:nowrap}
+td a{color:var(--accent);font-weight:600;white-space:nowrap}
+.hw{display:flex;flex-direction:column;gap:10px}
+.hwitem{display:grid;grid-template-columns:64px 1fr;gap:4px 12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.hwitem .sec{font-family:var(--mono);font-weight:700;color:var(--accent)}
+.hwitem .do{font-size:.92rem}
+.hwitem .do b{background:var(--hl);padding:0 4px;border-radius:3px;font-weight:700}
+.ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.qimgbox{display:flex;flex-direction:column;gap:8px}
+.qtoggle{display:flex;gap:4px;background:var(--bg);border-radius:8px;padding:4px;width:fit-content}
+.qtoggle button{border:0;background:transparent;color:var(--muted);font:600 .88rem var(--body);padding:5px 12px;border-radius:6px;cursor:pointer}
+.qtoggle button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.paper{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px;max-height:70vh;overflow:auto}
+.crop{position:relative;width:100%;overflow:hidden}
+.crop img{position:absolute;left:0;width:100%;height:auto}
+.full img{width:100%;height:auto;display:block}
+.src{font-size:.78rem;color:var(--muted)}
+.simq td.qcell{white-space:nowrap}
+.pq button.peek,.simq button.peek{font:600 .85rem var(--body);color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+tr.peekrow td{background:var(--bg)}
+tr.peekrow .paper{max-height:none}
+.imgwrap{position:relative}
+.hl{position:absolute;left:-6px;right:-6px;border:2px solid #E8A500;background:rgba(255,214,0,.13);border-radius:6px;pointer-events:none}
+.hl span{position:absolute;right:6px;top:-11px;background:#E8A500;color:#1a1300;font:700 .72rem var(--body);padding:1px 7px;border-radius:999px}
+.stack{display:flex;flex-direction:column;gap:2px;font-size:.85rem;color:var(--muted)}
+.stack b{color:var(--ink)}
+.tiermean{font-size:.82rem;color:var(--muted)}
+.starters{margin-top:6px;display:flex;flex-direction:column;gap:6px}
+.starters .kw{display:flex;flex-wrap:wrap;gap:4px}
+.starters .kw span{background:var(--accent-soft);color:var(--accent);border-radius:5px;padding:1px 7px;font-size:.8rem;font-weight:600}
+.starters .say{font-size:.85rem;border-left:3px solid var(--accent);padding-left:8px;font-style:italic;color:var(--ink)}
+.marker{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.mrow{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.mrow .ql{font-family:var(--mono);font-size:.9rem}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts button{min-width:40px;font:600 .9rem var(--body);border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:7px;padding:6px 10px;cursor:pointer}
+.opts button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.opts button.ok[aria-pressed="true"]{background:var(--good);border-color:var(--good);color:#fff}
+.opts button.no[aria-pressed="true"]{background:var(--bad);border-color:var(--bad);color:#fff}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 24px}
+.score{display:flex;flex-wrap:wrap;gap:16px;align-items:baseline}
+.score .big{font:700 2rem var(--display)}
+.gtopic{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.gtopic h3{font-size:1.1rem}
+.glost{font-size:.9rem;color:var(--muted)}
+.gsec{display:flex;flex-direction:column;gap:6px}
+.gsec h4{margin:0;font:700 .78rem var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.gsec ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.gsec a{color:var(--accent);font-weight:600}
+.pq{display:flex;flex-direction:column;gap:6px}
+.pq .line{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.rank{flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);display:inline-grid;place-items:center;font:700 .85rem var(--display)}
+.ghead{display:flex;gap:12px;align-items:flex-start}
+.done{color:var(--muted);font-size:.9rem}
+.chip{display:inline-block;border-radius:999px;padding:2px 10px;font-weight:700;font-size:.8rem;width:fit-content;margin:2px 0}
+.f4{background:#D7E6FA;color:#123A6B}.f3{background:#E3EEFB;color:#1D4C85}.f2{background:#EEF2F7;color:#3B4D63}.f1{background:#F2F2F2;color:#5A5F66}
+.s3{background:#D6EED6;color:#1F5A22}.s2{background:#FBEBB8;color:#6B4D00}.s1{background:#F6D1C8;color:#7A2012}.sN{background:#ECEDEE;color:#555}
+.qw{background:#0E6E62;color:#fff}.we{background:#B26A00;color:#fff}.lp{background:#6B7280;color:#fff}
+.pq .line{align-items:center}
+@media (max-width:520px){.pq .line{display:grid;grid-template-columns:1fr auto;gap:2px 10px}.pq .line>.mono{grid-column:1/-1}}
+footer{color:var(--muted);font-size:.82rem;max-width:70ch}
+@media (max-width:520px){a.res{flex-wrap:wrap}a.res .k{width:auto}}
+@media (prefers-reduced-motion:no-preference){.fade{animation:f .25s ease-out}@keyframes f{from{opacity:.4}to{opacity:1}}}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px}.card h2,.card h3,.card p,.card ol{margin:0}
+.ov-bar{display:flex;height:34px;border-radius:8px;overflow:hidden;font-size:.8rem;font-weight:700}
+.ov-bar div{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;overflow:hidden}
+.ov-leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.85rem;margin-top:8px}
+.ov-leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.ov-tbl{width:100%;border-collapse:collapse;font-size:.88rem}
+.ov-tbl th{text-align:left;cursor:pointer;border-bottom:2px solid var(--line,#ccc);padding:6px 4px;white-space:nowrap}
+.ov-tbl td{border-bottom:1px solid var(--line,#ddd);padding:6px 4px;vertical-align:top}
+.ov-tbl tbody tr{cursor:pointer}.ov-tbl tbody tr:hover{background:rgba(127,127,127,.1)}
+.ov-scroll{overflow-x:auto}.ov-tbl.res tbody tr{cursor:default}.ov-tbl.res tr.rw td{background:rgba(192,57,43,.06)}.ov-tbl .chip{white-space:nowrap}
+.ov-sc text{fill:currentColor;font-size:11px}
+@media(max-width:560px){.ov-tbl{font-size:.78rem}.ov-tbl th{white-space:normal}.ov-tbl td:first-child{min-width:120px}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">VCE General Mathematics · Units 3 &amp; 4</div>
+    <h1>12MAG Gap Finder</h1>
+    <p class="lede">Sat a practice exam? Enter your results and get a study guide: the videos to watch, textbook questions to do and exam questions to practise, highest priority first.</p>
+  </header>
+
+  <section class="picker" aria-label="Find a question">
+    <div class="modes" role="group" aria-label="Look up by">
+      <button id="m-x" aria-pressed="true">Mark my exam</button>
+      <button id="m-o" aria-pressed="false">What's on the exam</button>
+      <button id="m-q" aria-pressed="false">One question</button>
+      <button id="m-t" aria-pressed="false">By topic</button>
+    </div>
+    <div class="row" id="xpick"><div class="field"><label for="xpaper">Exam I sat</label><select id="xpaper"></select></div></div>
+    <div class="row" id="qpick" hidden>
+      <div class="field"><label for="paper">Exam paper</label><select id="paper"></select></div>
+      <div class="field"><label for="qnum">Question</label><select id="qnum"></select></div>
+    </div>
+    <div class="row" id="tpick" hidden>
+      <div class="field"><label for="topic">Topic</label><select id="topic"></select></div>
+    </div>
+    <div class="hint">Full papers and examiners' reports are on the <a href="https://www.vcaa.vic.edu.au/assessment/vce/examination-specifications-past-examinations-and-examination-reports/general-mathematics" target="_blank" rel="noopener">VCAA General Mathematics page</a>.</div>
+  </section>
+
+  <main id="out" class="wrap" style="gap:20px;width:100%"></main>
+
+  <footer>Difficulty comes from the VCAA examiners' reports (2023–2025 main exams; NHT and sample papers have no published statistics). How often a topic comes up is based on 14 papers from the current study design. Topics follow the VCE Mathematics Study Design 2023–2027. Textbook references are to Cambridge Senior Maths General Mathematics Units 3&amp;4. Worked-solution videos by MaffsGuru.</footer>
+</div>
+
+<script>
+const D=__DATA__;
+const TB=__TUTOR__;
+const TASK={C:["Calculate","work out a value"],I:["Interpret","explain in context, so wording matters"],K:["Construct","build a matrix, table, graph or relation"],T:["Technology","the key step is a CAS or finance solver procedure"]};
+const SITTINGS=7;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct=x=>Math.round(x*100)+"%";
+const paperLabel=p=>p.replace("VCAA Sample","VCAA sample").replace(/ E([12])$/," · Exam $1").replace(" VCAA","");
+const papers=[...new Set(D.qs.map(q=>q.p))].sort((a,b)=>{const y=s=>(s.match(/\d{4}/)||["2022"])[0];return y(b)-y(a)||a.localeCompare(b)});
+const ytid=u=>u?u.split("v=")[1].split("&")[0]:"";
+function fill(sel,items){sel.innerHTML=items.map(([v,t])=>`<option value="${esc(v)}">${esc(t)}</option>`).join("")}
+fill($("paper"),papers.map(p=>[p,paperLabel(p)]));
+const codes=Object.keys(D.topics);
+fill($("topic"),codes.map(c=>[c,`${c} · ${D.topics[c].name}`]));
+function fillQ(){const p=$("paper").value;fill($("qnum"),D.qs.filter(q=>q.p===p).map(q=>[q.q,`Q${q.q}${q.m>1?`  (${q.m} marks)`:""}`]))}
+function diff(s){if(s==null)return{t:"No published data",c:"var(--muted)",w:0};return s>=.7?{t:"Easy",c:"var(--good)",w:s}:s>=.4?{t:"Medium",c:"var(--warn)",w:s}:{t:"Hard",c:"var(--bad)",w:s}}
+function sittingsWith(code){const set=new Set(D.qs.filter(q=>q.c===code).map(q=>q.p.replace(/ E[12]$/,"")));return set.size}
+function tierClass(t){return(t||"").split(" ")[0]}
+function freqInfo(code){const n=sittingsWith(code);const l=n>=6?"Every exam":n>=4?"Most exams":n>=2?"Sometimes":"Rarely";const c=n>=6?"f4":n>=4?"f3":n>=2?"f2":"f1";return {n,l,c}}
+function succInfo(s){if(s==null)return {l:"No data",c:"sN"};return s>=.7?{l:"Most get it right",c:"s3"}:s>=.4?{l:"Mixed",c:"s2"}:{l:"Most get it wrong",c:"s1"}}
+function chip(i){return `<span class="chip ${i.c}">${esc(i.l)}</span>`}
+function likelihood(code){const T=D.topics[code].sum;const f=freqInfo(code);const s=succInfo(T.succ);
+  return `<div class="fact"><span class="eyebrow">How often it's examined</span>${chip(f)}
+  <div class="stack"><span>Came up in <b>${f.n} of ${SITTINGS}</b> sittings</span><span>About <b>${T.per}</b> question${T.per==1?"":"s"} per sitting</span><span><b>${(T.share*100).toFixed(1)}%</b> of exam marks</span></div>
+  <span class="eyebrow" style="margin-top:8px">How students go on this topic</span>${chip(s)}<div class="stack"><span>Average score <b>${pct(T.succ)}</b> across ${T.q} past questions</span></div></div>`}
+function vidLinks(code,q){const T=D.topics[code];let h="";
+  if(q&&q.v)h+=`<a class="res" href="${esc(q.v)}" target="_blank" rel="noopener"><span class="k">This question</span><span class="t">Worked solution for ${esc(paperLabel(q.p))} Q${esc(q.q)}<small>MaffsGuru · ${q.vl==="whole video"?"full paper video (no timestamps)":"jumps to "+esc(q.vl)}</small></span></a>`;
+  T.vids.filter(Boolean).forEach((v,i)=>h+=`<a class="res" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"><span class="k">Learn it ${i+1}</span><span class="t">${esc(v.t)}<small>${esc(v.ch)}</small></span><span class="len">${esc(v.len)}</span></a>`);
+  if(T.cp)h+=`<a class="res" href="https://www.youtube.com/watch?v=${T.cp.id}" target="_blank" rel="noopener"><span class="k">ClassPad</span><span class="t">${esc(T.cp.t)}<small>${esc(T.cp.ch)}</small></span><span class="len">${esc(T.cp.len)}</span></a>`;
+  if(T.ti)h+=`<a class="res" href="https://www.youtube.com/watch?v=${T.ti.id}" target="_blank" rel="noopener"><span class="k">TI-Nspire</span><span class="t">${esc(T.ti.t)}<small>${esc(T.ti.ch)}</small></span><span class="len">${esc(T.ti.len)}</span></a>`;
+  return h}
+function prompt(code,q){const T=D.topics[code],b=TB[code];
+  let s=`You are a patient Socratic maths tutor helping a Year 12 VCE General Mathematics student (Units 3 & 4, VCE Mathematics Study Design 2023–2027). Never give me the final answer or do the working for me. Ask me one short question at a time, wait for my reply, and give hints only when I'm stuck.\n\n`;
+  if(q){s+=`THE QUESTION I GOT WRONG\n- Paper: ${paperLabel(q.p)}, Question ${q.q} (${q.m} mark${q.m>1?"s":""})\n- Topic: ${T.name}\n- Question type: ${TASK[q.t][0]} (${TASK[q.t][1]})\n- What it asks: ${q.n}\n`;
+    if(q.s!=null)s+=`- How other students went: average score ${pct(q.s)}\n`;
+    s+=`- I've attached a photo or screenshot of the question. If there is no image, ask me to type out the question (including any table or diagram values) before we start.\n`;
+    if(q.cm)s+=`\nNOTES FOR THE TUTOR ONLY (from the VCAA examiners' report; do not reveal the answer):\n${q.cm}\n`;}
+  else s+=`THE TOPIC I WANT TO RELEARN\n- ${T.name}\n- If I attach a photo of a question I got wrong, start from that. Otherwise, give me a short VCAA-style question to try.\n`;
+  s+=`\nTOPIC NOTES FOR THE TUTOR\n- Key ideas: ${b[0]}\n- Common mistakes: ${b[1]}\n- Calculator: ${b[2]} I use a ${"ClassPad"} (or TI-Nspire) CAS calculator.\n- Exam wording: ${b[3]}\n`;
+  s+=`\nHOW TO RUN THE SESSION\n1. Diagnose: ask to see my working or answer, then ask questions until we find exactly where my thinking went wrong.\n2. Relearn: guide me with questions so that I fix the mistake and solve it myself. Check that I use the correct VCAA wording.\n3. Check it stuck: give me one new, similar question (different numbers and context) to do on my own, then check it.\n4. Finish with a 2–3 line summary I can copy into my bound reference book.`;
+  return s}
+function hw(code){const T=D.topics[code];
+  const items=T.skills.map(k=>`<div class="hwitem"><span class="sec">${esc(k.sec)}</span><div class="do"><div>${esc(k.skill.charAt(0).toUpperCase()+k.skill.slice(1))}</div><div class="hint">Read ${esc(k.ex||"the section notes")} · Redo <b>${esc(k.hw||"—")}</b>${k.es?` · then ${esc(k.es)} (Exam 1 style)`:""}</div></div></div>`).join("");
+  return `<div class="hw">${items||'<p class="hint">No checklist skills mapped.</p>'}</div><p class="hint">Exam-style revision for this topic: Cambridge ${esc(T.rev)}.</p>`}
+function similar(code,q){let list=D.qs.filter(x=>x.c===code&&!(q&&x.p===q.p&&x.q===q.q));
+  list=list.map(x=>({x,sc:(q&&x.t===q.t?3:0)+(q&&x.ex===q.ex?1:0)+(x.v?1:0)+(x.s!=null?.5:0)})).sort((a,b)=>b.sc-a.sc||(a.x.s??.5)-(b.x.s??.5));
+  const show=list.slice(0,q?6:40);
+  if(!show.length)return'<p class="hint">No other past exam questions on this topic yet.</p>';
+  return `<div class="tablewrap simq"><table><thead><tr><th>Question</th><th>What it asks</th><th>Type</th><th>Avg score</th><th>See it</th><th>Solution</th></tr></thead><tbody>${show.map(({x})=>`<tr><td class="mono qcell">${esc(paperLabel(x.p))} Q${esc(x.q)}</td><td>${esc(x.n)}</td><td>${TASK[x.t][0]}</td><td class="num2">${x.s==null?"—":pct(x.s)}</td><td>${x.img?`<button class="peek" data-i="${D.qs.indexOf(x)}">Show</button>`:"—"}</td><td>${x.v?`<a href="${esc(x.v)}" target="_blank" rel="noopener">▶ Video</a>`:"—"}</td></tr>`).join("")}</tbody></table></div>`}
+function stepHTML(n,title,sub,body){return `<section class="step"><div class="stephead"><span class="num">${n}</span><div><h2>${title}</h2><p>${sub}</p></div></div>${body}</section>`}
+
+const IMG="q/";function qsrc(n){return (window.QIMG&&QIMG[n])||IMG+n}
+function srcLine(q){const m=q.p.match(/(\d{4})/),y=m?m[1]:"";const nht=q.p.includes("NHT")?" (NHT)":"",smp=q.p.includes("Sample")?"Sample ":"";
+  return `Source: VCAA ${smp}${y&&!smp?y+" ":""}VCE General Mathematics${nht} Examination ${q.ex.slice(-1)}, Question ${String(q.q).match(/^\d+/)[0]}. © VCAA, used for educational purposes.`}
+function qImage(q,mode){if(!q.img)return'<p class="hint">Question image not available.</p>';
+  if(mode==="part"&&q.pr){const [a,b]=q.pr,span=b-a;
+    return `<div class="paper"><div class="crop" style="aspect-ratio:${q.iw}/${span}"><img src="${qsrc(q.img)}" alt="${esc(paperLabel(q.p))} question ${esc(q.q)}" style="top:${(-a/span*100).toFixed(3)}%;height:${(q.ih/span*100).toFixed(3)}%"></div></div>`}
+  const hl=q.pr?`<div class="hl" style="top:${(q.pr[0]/q.ih*100).toFixed(3)}%;height:${((q.pr[1]-q.pr[0])/q.ih*100).toFixed(3)}%"><span>Part ${esc(q.q)}</span></div>`:"";
+  return `<div class="paper full"><div class="imgwrap"><img src="${qsrc(q.img)}" loading="lazy" alt="${esc(paperLabel(q.p))} question ${esc(String(q.q).match(/^\d+/)[0])}">${hl}</div></div>`}
+function qBlock(q){const hasPart=q.ex==="Exam 2"&&q.pr;const mode=hasPart?"part":"whole";
+  return `<div class="qimgbox">${hasPart?`<div class="qtoggle" role="group" aria-label="Show"><button data-m="part" aria-pressed="true">Just part ${esc(q.q)}</button><button data-m="whole" aria-pressed="false">Whole question</button></div>`:""}<div id="qimg">${qImage(q,mode)}</div><div class="src">${srcLine(q)}</div></div>`}
+const KW={C:{k:["show working","substitute","round as instructed","units"],s:"Write the rule, substitute the values, then give the answer to the required decimal places."},
+I:{k:["on average","in context","refer to both variables","quote the numbers"],s:"Answer in a full sentence that uses the question's own variable names and numbers."},
+K:{k:["label everything","correct order / notation","check it adds up","use the given template"],s:"Build it step by step and check it against the information given."},
+T:{k:["enter data carefully","check the settings","write the values you used","round at the end"],s:"Write down what you entered into the CAS as your working."}};
+function starters(code,t){const k=KW[t];const say=TB[code]?TB[code][3]:"";
+  return `<div class="starters"><span class="eyebrow">Key words</span><div class="kw">${k.k.map(x=>`<span>${esc(x)}</span>`).join("")}</div><span class="eyebrow">How to write it</span><div class="say">${esc(say||k.s)}</div></div>`}
+function render(code,q){const T=D.topics[code];const d=q?diff(q.s):null;
+  let head=`<section class="qhead fade">`;
+  head+=q?`<div class="qref">${esc(paperLabel(q.p))} · Question ${esc(q.q)} · ${q.m} mark${q.m>1?"s":""}</div>`:`<div class="qref">Topic overview</div>`;
+  if(q)head+=qBlock(q);
+  head+=`<div class="topicline"><span class="code">${code}</span><h2>${esc(T.name)}</h2></div><div class="hint">${esc(T.aos)} · ${esc(T.unit)}${q?` · ${esc(q.n)}`:""}</div><div class="facts">`;
+  if(q)head+=`<div class="fact"><span class="eyebrow">Question type</span><span class="v">${TASK[q.t][0]}</span><span class="s">${TASK[q.t][1]}</span>${starters(code,q.t)}</div>
+    <div class="fact"><span class="eyebrow">How students went on this question</span>${q.s!=null?`${chip(succInfo(q.s))}<span class="v">Average ${pct(q.s)}</span><div class="bar"><i style="width:${Math.round(q.s*100)}%;background:${d.c}"></i></div><div class="stack">${q.sp.split(" | ").map(x=>`<span>${esc(x.replace("1 marks","1 mark"))} of students</span>`).join("")}</div>`:`${chip({l:"No data",c:"sN"})}<span class="s">NHT and sample papers have no published statistics. The topic average is ${pct(T.sum.succ)}.</span>`}</div>`;
+  
+  head+=likelihood(code)+`</div>`;
+  if(q&&(q.cm||q.a))head+=`<details><summary>Show the answer${q.cm?" and examiners' comment":""}</summary><div class="note" style="margin-top:8px">${q.a?`<b>Answer: ${esc(q.a)}</b>${q.cm?"<br>":""}`:""}${esc(q.cm||"")}</div></details>`;
+  head+=`</section>`;
+  const pr=prompt(code,q);
+  const tutor=`<textarea class="prompt" id="prompt" readonly aria-label="AI tutor prompt">${esc(pr)}</textarea><div class="btnrow"><button class="btn" id="copy">1. Copy prompt</button>${q&&q.img?`<button class="btn" id="copyimg">2. Copy question image</button><a class="hint" href="${qsrc(q.img)}" target="_blank" rel="noopener">Open image</a>`:""}<span class="hint" id="copied" role="status"></span></div><p class="hint">Paste the prompt into ChatGPT, Claude, Gemini or Copilot, then copy the question image and paste it into the same message. If copying the image doesn't work on your device, use Open image and save it, or take a screenshot.</p>`;
+  $("out").innerHTML=head+
+   stepHTML(1,"Watch","See this question solved, then relearn the topic.",`<div class="links">${vidLinks(code,q)}</div>`)+
+   stepHTML(2,"Work it out with an AI tutor","A tutor prompt that asks you questions instead of giving you the answer.",tutor)+
+   stepHTML(3,"Practise from the textbook","Cambridge sections and the exact homework questions for each skill.",hw(code))+
+   stepHTML(q?4:4,q?"Retry a similar exam question":"Every past exam question on this topic",q?"Don't just redo the same one. Try these, best matches first.":"Hardest first where statistics exist.",similar(code,q));
+  document.querySelectorAll(".qtoggle button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".qtoggle button").forEach(x=>x.setAttribute("aria-pressed",x===b));$("qimg").innerHTML=qImage(q,b.dataset.m)});
+  document.querySelectorAll("button.peek").forEach(b=>b.onclick=()=>{const tr=b.closest("tr"),nx=tr.nextElementSibling;if(nx&&nx.classList.contains("peekrow")){nx.remove();b.textContent="Show";return}const x=D.qs[+b.dataset.i];const r=document.createElement("tr");r.className="peekrow";r.innerHTML=`<td colspan="6">${x.pr?`<p class="hint" style="margin:0 0 6px">Full question shown so you can attempt it. <b>Part ${esc(x.q)}</b> is the highlighted section.</p>`:""}${qImage(x,"whole")}<div class="src">${srcLine(x)}</div></td>`;tr.after(r);b.textContent="Hide"});
+  if($("copyimg"))$("copyimg").onclick=async()=>{try{const blob=await (await fetch(qsrc(q.img))).blob();await navigator.clipboard.write([new ClipboardItem({"image/png":blob})]);$("copied").textContent="Question image copied. Paste it into your AI tutor chat (Ctrl+V / Cmd+V)."}catch(e){$("copied").textContent="Your browser blocked copying the image. Use Open image and save it, or take a screenshot."}};
+  $("copy").onclick=async()=>{const ta=$("prompt");try{await navigator.clipboard.writeText(ta.value);$("copied").textContent="Copied. Paste it into your AI tutor."}catch(e){ta.focus();ta.select();$("copied").textContent="Press Ctrl+C (or Cmd+C) to copy the selected prompt."}};
+  try{localStorage.setItem("gf",JSON.stringify(q?{p:q.p,q:q.q}:{t:code}))}catch(e){}
+}
+function showQ(){const q=D.qs.find(x=>x.p===$("paper").value&&x.q===$("qnum").value);if(q)render(q.c,q)}
+
+// ---------- Mark my exam ----------
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let RES=store.get("gf_results")||{};
+let E1MODE=store.get("gf_e1mode")||"letters";
+fill($("xpaper"),papers.map(p=>[p,paperLabel(p)]));
+function paperQs(p){return D.qs.filter(q=>q.p===p)}
+function markUI(){const p=$("xpaper").value,qs=paperQs(p),e1=p.endsWith("E1"),r=RES[p]||(RES[p]={});
+  const hasKey=e1&&qs.every(q=>q.a);const mode=e1?(hasKey?E1MODE:"tick"):"marks";
+  let h=`<section class="marker"><div class="stephead"><span class="num">1</span><div><h2>Enter your results</h2><p>${e1?(hasKey?"Tap the letter you chose, or switch to ticks if you've already marked it.":"No answer key for this paper, so tick right or wrong."):"Use the examiners' report to mark yourself, then tap the marks you got for each part."}</p></div></div>`;
+  if(e1&&hasKey)h+=`<div class="qtoggle" role="group" aria-label="Entry style"><button id="e1l" aria-pressed="${mode==="letters"}">My letters</button><button id="e1t" aria-pressed="${mode==="tick"}">Right / wrong</button></div>`;
+  h+=`<div class="mgrid">`+qs.map((q,i)=>{const v=r[q.q];let o="";
+    if(mode==="letters")o="ABCDE".slice(0,q.no||4).split("").map(L=>`<button data-i="${i}" data-v="${L}" aria-pressed="${v===L}">${L}</button>`).join("");
+    else if(mode==="tick")o=`<button class="ok" data-i="${i}" data-v="1" aria-pressed="${v===1}">✓ Right</button><button class="no" data-i="${i}" data-v="0" aria-pressed="${v===0}">✗ Wrong</button>`;
+    else o=[...Array(q.m+1).keys()].map(k=>`<button data-i="${i}" data-v="${k}" aria-pressed="${v===k}">${k}</button>`).join("")+`<span class="hint">/ ${q.m}</span>`;
+    return `<div class="mrow"><span class="ql">Q${esc(q.q)}</span><div class="opts">${o}</div></div>`}).join("")+`</div>`;
+  const done=qs.filter(q=>r[q.q]!==undefined).length;
+  h+=`<div class="btnrow"><button class="btn" id="build">Build my study guide</button><span class="hint">${done} of ${qs.length} entered · saved on this device</span><button class="peek" id="clear" style="font:600 .85rem var(--body);color:var(--muted);background:none;border:0;text-decoration:underline;cursor:pointer">Clear this paper</button></div></section><div id="guide" class="wrap" style="gap:16px"></div>`;
+  $("out").innerHTML=h;
+  if($("e1l")){$("e1l").onclick=()=>{E1MODE="letters";store.set("gf_e1mode",E1MODE);RES[p]={};store.set("gf_results",RES);markUI()};$("e1t").onclick=()=>{E1MODE="tick";store.set("gf_e1mode",E1MODE);RES[p]={};store.set("gf_results",RES);markUI()}}
+  document.querySelectorAll(".opts button").forEach(b=>b.onclick=()=>{const q=qs[+b.dataset.i];const v=isNaN(+b.dataset.v)?b.dataset.v:+b.dataset.v;r[q.q]=v;store.set("gf_results",RES);
+    b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    const d=qs.filter(x=>r[x.q]!==undefined).length;document.querySelector(".marker .btnrow .hint").textContent=`${d} of ${qs.length} entered · saved on this device`});
+  $("clear").onclick=()=>{RES[p]={};store.set("gf_results",RES);markUI()};
+  $("build").onclick=()=>buildGuide(p);
+  if(done===qs.length)buildGuide(p,true);
+}
+function scored(q,v,e1){if(v===undefined)return 0;if(!e1)return v;if(typeof v==="number")return v;return v===q.a?1:0}
+function buildGuide(p,quiet){const qs=paperQs(p),r=RES[p]||{},e1=p.endsWith("E1");
+  let got=0,tot=0,miss=0;const lost={};
+  qs.forEach(q=>{if(r[q.q]===undefined)miss++;const s=scored(q,r[q.q],e1);tot+=q.m;got+=s;const l=q.m-s;if(l>0){(lost[q.c]=lost[q.c]||{marks:0,qs:[]}).marks+=l;lost[q.c].qs.push(q)}});
+  if(miss===qs.length){$("guide").innerHTML=quiet?"":`<p class="hint">Enter your results first.</p>`;return}
+  const cohort=qs.filter(q=>q.s!=null);const avg=cohort.length===qs.length?Math.round(qs.reduce((a,q)=>a+q.s*q.m,0)/qs.reduce((a,q)=>a+q.m,0)*100):null;
+  const LBL={qw:{l:"Quick win",c:"qw",why:"Comes up a lot and most students get these marks. Fix these first."},we:{l:"Worth the effort",c:"we",why:"Comes up a lot but is hard for most students. Big payoff, more work."},lp:{l:"Lower priority",c:"lp",why:"Rarely examined. Do these after the others."}};
+  const order=Object.keys(lost).map(c=>{const o=lost[c];const f=freqInfo(c);const withS=o.qs.filter(q=>q.s!=null);
+    const qs_=withS.length?withS.reduce((a,q)=>a+q.s*q.m,0)/withS.reduce((a,q)=>a+q.m,0):D.topics[c].sum.succ;
+    const k=f.n>=4?(qs_>=.5?"qw":"we"):"lp";return {c,...o,f,qs_,k,score:o.marks*(0.25+f.n/7)*(0.25+qs_)}})
+    .sort((a,b)=>({qw:0,we:1,lp:2}[a.k]-{qw:0,we:1,lp:2}[b.k])||b.score-a.score);
+  let h=`<section class="qhead"><div class="stephead"><span class="num">2</span><div><h2>Your study guide</h2><p>Topics where you lost marks, in the order to study them. <b>Quick wins</b> first: topics that come up a lot where most students get the marks. Then <b>Worth the effort</b>: common but hard. Then <b>Lower priority</b>: rarely examined.</p></div></div>
+   <div class="score"><span class="big">${got} / ${tot}</span><span class="hint">${Math.round(got/tot*100)}%${miss?` · ${miss} question${miss>1?"s":""} left blank, counted as wrong`:""}${avg!=null?` · state average ${avg}%`:""}</span></div></section>`;
+  {const A={};qs.forEach(q=>{const a=D.topics[q.c].aos;const o=A[a]=A[a]||{g:0,m:0,s:0,sm:0};o.g+=scored(q,r[q.q],e1);o.m+=q.m;if(q.s!=null){o.s+=q.s*q.m;o.sm+=q.m}});
+   const aos=Object.entries(A).map(([a,o])=>`<tr><td>${esc(a)}</td><td><b>${o.g} / ${o.m}</b> (${Math.round(o.g/o.m*100)}%)</td><td>${o.sm?Math.round(o.s/o.sm*100)+"%":"–"}</td></tr>`).join("");
+   const rows=qs.map(q=>{const v=r[q.q];const s=scored(q,v,e1);const st=v===undefined?["Blank","s1","–"]:s>=q.m?["Right","s3","✓"]:s>0?["Partial","s2","½"]:["Wrong","s1","✗"];
+     const you=e1?(v===undefined?"–":typeof v==="number"?(v?"✓":"✗"):esc(v)+(s?"":` <small>(ans ${esc(q.a||"?")})</small>`)):`${v===undefined?0:v} / ${q.m}`;
+     const flag=s<q.m&&q.s!=null&&q.s>=.7?` <span class="chip qw">Most got this right</span>`:"";
+     return `<tr class="${s<q.m?"rw":""}"><td><b>Q${esc(q.q)}</b></td><td><span class="chip ${st[1]}">${st[2]} ${st[0]}</span>${flag}</td><td>${you}</td><td>${q.s==null?"–":Math.round(q.s*100)+"%"}</td><td>${q.c} <small>${esc(q.n||D.topics[q.c].name)}</small></td><td><a href="#" onclick="goQ('${q.p}','${q.q}');return false">Open</a></td></tr>`}).join("");
+   const nr=qs.filter(q=>scored(q,r[q.q],e1)>=q.m).length;
+   h+=`<section class="card"><h3>Your results</h3><p class="tiermean">${nr} of ${qs.length} ${e1?"questions":"parts"} fully right. “State avg” is how the whole state went on that question${avg==null?" (not published for this paper)":""}. Questions you missed that most students got right are the easiest marks to win back.</p>
+   <div class="ov-scroll"><table class="ov-tbl"><thead><tr><th>Area of study</th><th>You</th><th>State avg</th></tr></thead><tbody>${aos}</tbody></table></div>
+   <details open><summary><b>Question by question</b></summary><div class="ov-scroll"><table class="ov-tbl res"><thead><tr><th>Q</th><th>Result</th><th>${e1?"You chose":"Your marks"}</th><th>State avg</th><th>Topic</th><th></th></tr></thead><tbody>${rows}</tbody></table></div></details></section>`;}
+  if(!order.length)h+=`<p class="done">No marks lost on the questions entered. Try another paper.</p>`;
+  order.forEach((o,i)=>{const T=D.topics[o.c];
+    const vids=[];o.qs.forEach(q=>{if(q.v)vids.push(`<li><a href="${esc(q.v)}" target="_blank" rel="noopener">Worked solution: ${esc(paperLabel(q.p))} Q${esc(q.q)}</a> <span class="hint">MaffsGuru${q.vl==="whole video"?" · full paper video":" · "+esc(q.vl)}</span></li>`)});
+    T.vids.filter(Boolean).forEach(v=>vids.push(`<li><a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">${esc(v.t)}</a> <span class="hint">${esc(v.ch)} · ${esc(v.len)}</span></li>`));
+    if(T.cp)vids.push(`<li><a href="https://www.youtube.com/watch?v=${T.cp.id}" target="_blank" rel="noopener">ClassPad: ${esc(T.cp.t)}</a> <span class="hint">${esc(T.cp.len)}</span></li>`);
+    if(T.ti)vids.push(`<li><a href="https://www.youtube.com/watch?v=${T.ti.id}" target="_blank" rel="noopener">TI-Nspire: ${esc(T.ti.t)}</a> <span class="hint">${esc(T.ti.len)}</span></li>`);
+    const idx=[...new Set(o.qs.flatMap(q=>q.sk||[]))];const use=idx.length?idx.map(i=>T.skills[i]):T.skills;
+    const secs={};use.forEach(k=>{const s=secs[k.sec]=secs[k.sec]||{title:k.title,qs:[],ex:[]};const m=(k.hw||"").replace(/^Ex \S+ /,"");if(m&&!s.qs.includes(m))s.qs.push(m);(k.ex||"").replace(/Examples?|CAS \d+/g,"").split(/[, ]+/).filter(Boolean).forEach(n=>{if(!s.ex.includes(n))s.ex.push(n)});if(k.es&&!s.es)s.es=k.es.replace(/^Ex \S+ /,"")});
+    const tb=Object.entries(secs).map(([sec,s])=>`<li><b>Ex ${esc(sec)}</b> ${esc(s.title)}: questions <b>${esc(s.qs.join(", "))}</b>${s.es?`, then exam-style ${esc(s.es)}`:""} <span class="hint">(worked examples ${esc(s.ex.join(", "))})</span></li>`);
+    const tests=o.qs.map(q=>{const ks=(q.sk||[]).map(i=>T.skills[i]);return `<li class="pq"><div class="line"><span class="mono">Q${esc(q.q)}</span><span>${ks.length?ks.map(k=>`${esc(k.skill.charAt(0).toUpperCase()+k.skill.slice(1).replace(/\.$/,""))} <span class="hint">(${esc(k.sec)})</span>`).join("; "):`<span class="hint">${esc(q.n)}</span>`}</span>${q.img?`<button class="peek" data-i="${D.qs.indexOf(q)}">Show</button>`:""}</div></li>`}).join("");
+    tb.push(`<li>Exam-style revision: Cambridge ${esc(T.rev)}</li>`);
+    const types=new Set(o.qs.map(q=>q.t));
+    const prac=D.qs.filter(x=>x.c===o.c&&x.p!==p).map(x=>({x,sc:(types.has(x.t)?3:0)+(x.v?1:0)+(x.s!=null?.5:0)})).sort((a,b)=>b.sc-a.sc||(a.x.s??.5)-(b.x.s??.5)).slice(0,5);
+    const pq=prac.map(({x})=>`<li class="pq"><div class="line"><span class="mono">${esc(paperLabel(x.p))} Q${esc(x.q)}</span><span>${esc(x.n)}</span>${x.s!=null?`<span class="hint">avg ${pct(x.s)}</span>`:""}${x.img?`<button class="peek" data-i="${D.qs.indexOf(x)}">Show</button>`:""}${x.v?`<a href="${esc(x.v)}" target="_blank" rel="noopener">▶ Solution</a>`:""}</div></li>`);
+    h+=`<section class="gtopic"><div class="ghead"><span class="rank">${i+1}</span><div><h3>${esc(T.name)}</h3><div class="glost"><span class="chip ${LBL[o.k].c}">${LBL[o.k].l}</span> Lost ${o.marks} mark${o.marks>1?"s":""} · ${chip(o.f)} ${chip(succInfo(o.qs_))}</div><div class="hint" style="margin-top:4px">${LBL[o.k].why}</div></div></div>
+      <div class="gsec"><h4>Cambridge skills tested by the questions you got wrong</h4><ul>${tests}</ul>${idx.length?"":'<p class="hint">These questions could not be matched to a specific skill, so all sections for the topic are listed below.</p>'}</div>
+      <div class="gsec"><h4>1 · YouTube videos</h4><ul>${vids.join("")}</ul></div>
+      <div class="gsec"><h4>2 · Textbook tasks</h4><ul>${tb.join("")}</ul>${idx.length&&use.length<T.skills.length?`<details><summary class="hint">All sections for this topic</summary><ul>${[...new Set(T.skills.map(k=>k.sec))].map(s=>`<li>Ex ${esc(s)} ${esc(T.skills.find(k=>k.sec===s).title)}</li>`).join("")}</ul></details>`:""}</div>
+      <div class="gsec"><h4>3 · Exam questions to practise</h4><ul>${pq.join("")||'<li class="hint">No other past questions on this topic.</li>'}</ul></div></section>`});
+  $("guide").innerHTML=h;
+  $("guide").querySelectorAll("button.peek").forEach(b=>b.onclick=()=>{const li=b.closest(".pq");const ex=li.querySelector(".peekbox");if(ex){ex.remove();b.textContent="Show";return}
+    const x=D.qs[+b.dataset.i];const d=document.createElement("div");d.className="peekbox";d.innerHTML=`${x.pr?`<p class="hint" style="margin:6px 0">Part ${esc(x.q)} is highlighted.</p>`:""}${qImage(x,"whole")}<div class="src">${srcLine(x)}</div>`;li.appendChild(d);b.textContent="Hide"});
+  if(!quiet)$("guide").scrollIntoView({behavior:"smooth",block:"start"});
+}
+const AOSC={};["#2f6fb3","#2e8b57","#c77d12","#8a4fb3"].forEach((c,i)=>{const a=[...new Set(Object.values(D.topics).map(T=>T.aos))][i];if(a)AOSC[a]=c});
+function ovStats(){const tot=D.qs.reduce((a,q)=>a+q.m,0);return Object.keys(D.topics).map(c=>{const qs=D.qs.filter(q=>q.c===c);const m=qs.reduce((a,q)=>a+q.m,0);const w=qs.filter(q=>q.s!=null);const wm=w.reduce((a,q)=>a+q.m,0);const s=wm?w.reduce((a,q)=>a+q.s*q.m,0)/wm:null;return {c,T:D.topics[c],f:freqInfo(c),m,sh:m/tot,s,nq:qs.length}})}
+let ovSort={k:"sh",d:-1};
+function overview(){const R=ovStats();const tot=D.qs.reduce((a,q)=>a+q.m,0);const nP=new Set(D.qs.map(q=>q.p.replace(/ E[12]$/,""))).size;
+const A={};R.forEach(r=>{A[r.T.aos]=(A[r.T.aos]||0)+r.m});
+const bar=Object.entries(A).map(([a,m])=>`<div style="width:${m/tot*100}%;background:${AOSC[a]}" title="${esc(a)}">${Math.round(m/tot*100)}%</div>`).join("");
+const leg=Object.entries(A).map(([a,m])=>`<span><i style="background:${AOSC[a]}"></i>${esc(a)} (${Math.round(m/tot*100)}%)</span>`).join("");
+// scatter
+const W=560,H=320,L=44,B=34,Tp=10,Rt=12;const XM=Math.max(...R.map(r=>r.sh))*1.08;const xs=v=>L+v/XM*(W-L-Rt-30),ys=s=>Tp+(1-s)*(H-Tp-B);
+let pts=R.filter(r=>r.s!=null&&r.f.n>0).map(r=>{const j=0;return `<g style="cursor:pointer" onclick="goTopic('${r.c}')"><circle cx="${xs(r.sh)+j}" cy="${ys(r.s)}" r="6" fill="${AOSC[r.T.aos]}" fill-opacity=".75" stroke="#fff"/><title>${r.c} ${esc(r.T.name)}: ${r.f.n}/${nP} sittings, avg ${Math.round(r.s*100)}%</title><text x="${xs(r.sh)+j+7}" y="${ys(r.s)+4}">${r.c}</text></g>`}).join("");
+const mx=xs(0.03),my=ys(.6);
+const sc=`<svg class="ov-sc" viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="How often each topic appears vs how students go">
+<rect x="${mx}" y="${Tp}" width="${W-Rt-mx}" height="${my-Tp}" fill="#2e8b57" fill-opacity=".08"/><rect x="${mx}" y="${my}" width="${W-Rt-mx}" height="${H-B-my}" fill="#c0392b" fill-opacity=".08"/>
+<line x1="${L}" y1="${H-B}" x2="${W-Rt}" y2="${H-B}" stroke="currentColor" stroke-opacity=".4"/><line x1="${L}" y1="${Tp}" x2="${L}" y2="${H-B}" stroke="currentColor" stroke-opacity=".4"/>
+${[0,.25,.5,.75,1].map(s=>`<text x="${L-6}" y="${ys(s)+4}" text-anchor="end">${s*100}%</text>`).join("")}
+${[0,.02,.04,.06,.08].filter(v=>v<XM).map(v=>`<text x="${xs(v)}" y="${H-B+15}" text-anchor="middle">${v*100}%</text>`).join("")}
+<text x="${(L+W)/2}" y="${H-3}" text-anchor="middle">Share of all exam marks →</text>
+<text x="${W-Rt-6}" y="${Tp+14}" text-anchor="end" font-weight="700">Lots of marks, most get it right: don't drop these</text>
+<text x="${W-Rt-6}" y="${H-B-8}" text-anchor="end" font-weight="700">Lots of marks and hard: where marks are won</text>
+${pts}</svg>`;
+// table
+const rows=R.slice().sort((a,b)=>{const k=ovSort.k;const v=r=>k==="c"?r.c:k==="n"?r.f.n:k==="s"?(r.s==null?-1:r.s):r.sh;return (v(a)>v(b)?1:v(a)<v(b)?-1:0)*ovSort.d||a.c.localeCompare(b.c)});
+const th=(k,l,cl="")=>`<th class="${cl}" onclick="ovSortBy('${k}')">${l}${ovSort.k===k?(ovSort.d>0?" ▲":" ▼"):""}</th>`;
+const tb=rows.map(r=>`<tr onclick="goTopic('${r.c}')"><td><b>${r.c}</b> ${esc(r.T.name)}</td><td>${r.f.n}/${nP}<br>${chip(r.f)}</td><td>${r.m?(r.sh*100).toFixed(1)+"%":"0%"}${r.m?"":"<br><small>Not yet examined (still examinable)</small>"}</td><td>${r.s==null?"–":Math.round(r.s*100)+"%"}<br>${chip(succInfo(r.s))}</td></tr>`).join("");
+// task types
+const TT={C:"Calculate",I:"Interpret",K:"Construct",T:"Technology"};
+const tt=Object.keys(TT).map(k=>{const w=D.qs.filter(q=>q.t===k&&q.s!=null);const wm=w.reduce((a,q)=>a+q.m,0);const s=wm?w.reduce((a,q)=>a+q.s*q.m,0)/wm:null;const n=D.qs.filter(q=>q.t===k).length;return `<div class="card" style="padding:12px"><b>${TT[k]}</b><div style="font-size:1.6rem;font-weight:800">${s==null?"–":Math.round(s*100)+"%"}</div><small>average score · ${n} questions</small><br>${chip(succInfo(s))}</div>`}).join("");
+// hardest
+const hard=D.qs.filter(q=>q.s!=null).sort((a,b)=>a.s-b.s).slice(0,5).map(q=>`<li><a href="#" onclick="goQ('${q.p}','${q.q}');return false">${esc(q.p)} Q${esc(q.q)}</a>: ${esc(D.topics[q.c].name)} (${q.c}), ${Math.round(q.s*100)}% average</li>`).join("");
+$("out").innerHTML=`<section class="card"><h2>What's on the exam</h2><p>Based on ${D.qs.length} questions from ${papers.length} papers (${nP} sittings, 2023 onwards, including NHT and the VCAA sample). Every topic in the study design can be examined, even ones that haven't come up yet.</p></section>
+<section class="card"><h3>Where the marks are</h3><div class="ov-bar">${bar}</div><div class="ov-leg">${leg}</div></section>
+<section class="card"><h3>Marks vs how students go</h3><p class="tiermean">Each dot is a topic. Further right = worth more marks overall. Lower = students score worse. Tap a dot to open the topic.</p><div class="ov-scroll"><div style="min-width:520px">${sc}</div></div></section>
+<section class="card"><h3>Every topic</h3><p class="tiermean">Tap a heading to sort. Tap a row to see videos, textbook tasks and past questions.</p><div class="ov-scroll"><table class="ov-tbl"><thead><tr>${th("c","Topic")}${th("n","How often")}${th("sh","Share of marks")}${th("s","Average score")}</tr></thead><tbody>${tb}</tbody></table></div></section>
+<section class="card"><h3>By type of question</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">${tt}</div></section>
+<section class="card"><h3>The 5 hardest questions</h3><ol>${hard}</ol></section>`}
+function ovSortBy(k){ovSort=ovSort.k===k?{k,d:-ovSort.d}:{k,d:k==="c"?1:-1};overview()}
+function goTopic(c){$("topic").value=c;setMode("t");window.scrollTo(0,0)}
+function goQ(p,q){$("paper").value=p;fillQ();$("qnum").value=q;setMode("q");window.scrollTo(0,0)}
+function setMode(m){["x","o","q","t"].forEach(k=>$("m-"+k).setAttribute("aria-pressed",m===k));$("xpick").hidden=m!=="x";$("qpick").hidden=m!=="q";$("tpick").hidden=m!=="t";store.set("gf_mode",m);m==="x"?markUI():m==="o"?overview():m==="q"?showQ():render($("topic").value,null)}
+$("paper").onchange=()=>{fillQ();showQ()};$("qnum").onchange=showQ;$("topic").onchange=()=>render($("topic").value,null);
+$("m-x").onclick=()=>setMode("x");$("xpaper").onchange=()=>{store.set("gf_xpaper",$("xpaper").value);markUI()};$("m-q").onclick=()=>setMode("q");$("m-o").onclick=()=>setMode("o");$("m-t").onclick=()=>setMode("t");
+let saved=null;try{saved=JSON.parse(localStorage.getItem("gf"))}catch(e){}
+const xp=store.get("gf_xpaper");if(xp&&papers.includes(xp))$("xpaper").value=xp;else $("xpaper").value="2025 VCAA E1";
+if(store.get("gf_mode")==="o"){fillQ();setMode("o")}
+else if(store.get("gf_mode")!=="q"&&store.get("gf_mode")!=="t"){fillQ();setMode("x")}
+else if(saved&&saved.t&&D.topics[saved.t]){$("topic").value=saved.t;fillQ();setMode("t")}
+else{const p=saved&&saved.p&&papers.includes(saved.p)?saved.p:"2025 VCAA E2";$("paper").value=p;fillQ();$("qnum").value=saved&&saved.q?saved.q:"6b";if(!$("qnum").value)$("qnum").selectedIndex=0;showQ()}
+</script>
+
+<script src="images.js" onload="document.querySelectorAll('img').forEach(i=>{const n=(i.getAttribute('src')||'').replace(/^q\//,'');if(QIMG[n])i.src=QIMG[n]})"></script>

@@ -1,0 +1,2123 @@
+[
+{
+"section": "1A",
+"n": 1,
+"skill": "I can identify types of data.",
+"see": "Example 1",
+"ex": "1A",
+"exq": 1
+},
+{
+"section": "1B",
+"n": 2,
+"skill": "I can construct a frequency table for categorical data.",
+"see": "Example 2",
+"ex": "1B",
+"exq": 1
+},
+{
+"section": "1B",
+"n": 3,
+"skill": "I can construct a bar chart from a frequency table.",
+"see": "Example 3",
+"ex": "1B",
+"exq": 2
+},
+{
+"section": "1B",
+"n": 4,
+"skill": "I can construct a percentage segmented bar chart from a frequency table.",
+"see": "Example 4",
+"ex": "1B",
+"exq": 4
+},
+{
+"section": "1B",
+"n": 5,
+"skill": "I can describe the distribution of a categorical variable.",
+"see": "Example 5",
+"ex": "1B",
+"exq": 6
+},
+{
+"section": "1C",
+"n": 6,
+"skill": "I can construct a frequency table for discrete numerical data.",
+"see": "Example 6",
+"ex": "1C",
+"exq": 1
+},
+{
+"section": "1C",
+"n": 7,
+"skill": "I can construct a grouped frequency table.",
+"see": "Example 7",
+"ex": "1C",
+"exq": 3
+},
+{
+"section": "1C",
+"n": 8,
+"skill": "I can construct a histogram from a grouped frequency table.",
+"see": "Example 8",
+"ex": "1C",
+"exq": 4
+},
+{
+"section": "1C",
+"n": 9,
+"skill": "I can describe the features of a distribution from a histogram.",
+"see": "Example 9",
+"ex": "1C",
+"exq": 9
+},
+{
+"section": "1D",
+"n": 10,
+"skill": "I can construct a dot plot.",
+"see": "Example 10",
+"ex": "1D",
+"exq": 1
+},
+{
+"section": "1D",
+"n": 11,
+"skill": "I can construct a stem plot.",
+"see": "Example 11",
+"ex": "1D",
+"exq": 6
+},
+{
+"section": "1E",
+"n": 12,
+"skill": "I can use a CAS calculator to find logs.",
+"see": "Example 12",
+"ex": "1E",
+"exq": 1
+},
+{
+"section": "1E",
+"n": 13,
+"skill": "I can interpret a histogram with a log scale.",
+"see": "Example 13",
+"ex": "1E",
+"exq": 4
+},
+{
+"section": "1F",
+"n": 14,
+"skill": "I can find the median value in a data set.",
+"see": "Example 14",
+"ex": "1F",
+"exq": 1
+},
+{
+"section": "1F",
+"n": 15,
+"skill": "I can find the median value from a dot plot.",
+"see": "Example 15",
+"ex": "1F",
+"exq": 3
+},
+{
+"section": "1F",
+"n": 16,
+"skill": "I can find the median value from a stem plot.",
+"see": "Example 16",
+"ex": "1F",
+"exq": 4
+},
+{
+"section": "1F",
+"n": 17,
+"skill": "I can find the range from a stem plot.",
+"see": "Example 17",
+"ex": "1F",
+"exq": 4
+},
+{
+"section": "1F",
+"n": 18,
+"skill": "I can find the IQR from a stem plot when n is even.",
+"see": "Example 18",
+"ex": "1F",
+"exq": 5
+},
+{
+"section": "1F",
+"n": 19,
+"skill": "I can find the IQR from a stem plot when n is odd.",
+"see": "Example 19",
+"ex": "1F",
+"exq": 8
+},
+{
+"section": "1F",
+"n": 20,
+"skill": "I can calculate the mean using the formula.",
+"see": "Example 21",
+"ex": "1F",
+"exq": 10
+},
+{
+"section": "1F",
+"n": 21,
+"skill": "I can calculate the mean and standard deviation using the CAS calculator.",
+"see": "CAS 3",
+"ex": "1F",
+"exq": 12
+},
+{
+"section": "1G",
+"n": 22,
+"skill": "I can construct a boxplot from a five number summary.",
+"see": "Example 22",
+"ex": "1G",
+"exq": 3
+},
+{
+"section": "1G",
+"n": 23,
+"skill": "I can construct a boxplot with outliers from data using the CAS calculator.",
+"see": "CAS 4",
+"ex": "1G",
+"exq": 7
+},
+{
+"section": "1G",
+"n": 24,
+"skill": "I can read values from a boxplot.",
+"see": "Example 24",
+"ex": "1G",
+"exq": 11
+},
+{
+"section": "1G",
+"n": 26,
+"skill": "I can use boxplots for describe a distribution without outliers.",
+"see": "Example 25",
+"ex": "1G",
+"exq": 14
+},
+{
+"section": "1G",
+"n": 27,
+"skill": "I can use boxplots to describe a distribution with outliers.",
+"see": "Example 26",
+"ex": "1G",
+"exq": 15
+},
+{
+"section": "1G",
+"n": 28,
+"skill": "I can use boxplots to answer statistical questions.",
+"see": "Example 27",
+"ex": "1G",
+"exq": 16
+},
+{
+"section": "1H",
+"n": 29,
+"skill": "I can apply the 68-95-99.7% rule.",
+"see": "Example 28",
+"ex": "1H",
+"exq": 1
+},
+{
+"section": "1H",
+"n": 30,
+"skill": "I can calculate standardised scores.",
+"see": "Example 29",
+"ex": "1H",
+"exq": 6
+},
+{
+"section": "1H",
+"n": 31,
+"skill": "I can use standardised scores to make comparisons.",
+"see": "Example 30",
+"ex": "1H",
+"exq": 8
+},
+{
+"section": "1H",
+"n": 32,
+"skill": "I can use standard scores to determine percentages.",
+"see": "Example 31",
+"ex": "1H",
+"exq": 9
+},
+{
+"section": "1H",
+"n": 33,
+"skill": "I can convert standardised scores into actual scores.",
+"see": "Example 32",
+"ex": "1H",
+"exq": 11
+},
+{
+"section": "1H",
+"n": 34,
+"skill": "I can solve for the values of the mean and standard deviation. See Example 33 and 34, Exercise 1H Question 12 and Question 14."
+},
+{
+"section": "2A",
+"n": 1,
+"skill": "I can identify categorical and numerical variables in bivariate data.",
+"see": "Example 1",
+"ex": "2A",
+"exq": 1
+},
+{
+"section": "2A",
+"n": 2,
+"skill": "I can identify explanatory and response variables.",
+"see": "Example 2",
+"ex": "2A",
+"exq": 2
+},
+{
+"section": "2B",
+"n": 3,
+"skill": "I can construct a two-way frequency table.",
+"see": "Example 4",
+"ex": "2B",
+"exq": 1
+},
+{
+"section": "2B",
+"n": 4,
+"skill": "I can percentage a two-way frequency table.",
+"see": "Example 5",
+"ex": "2B",
+"exq": 2
+},
+{
+"section": "2B",
+"n": 5,
+"skill": "I can describe an association from a percentaged two-way frequency table.",
+"see": "Example 6",
+"ex": "2B",
+"exq": 3
+},
+{
+"section": "2B",
+"n": 6,
+"skill": "I can construct a segmented bar chart from a percentaged two-way frequency table.",
+"see": "Example 7",
+"ex": "2B",
+"exq": 6
+},
+{
+"section": "2B",
+"n": 7,
+"skill": "I can describe an association from a percentaged segmented bar chart.",
+"see": "Example 8",
+"ex": "2B",
+"exq": 7
+},
+{
+"section": "2C",
+"n": 8,
+"skill": "I can use parallel dot plots to identify and describe the association between a numerical variable and a categorical variable.",
+"see": "Example 9",
+"ex": "2C",
+"exq": 1
+},
+{
+"section": "2C",
+"n": 9,
+"skill": "I can use back-to-back stem plots to display and describe the association between a numerical variable and a categorical variable.",
+"see": "Example 10",
+"ex": "2C",
+"exq": 2
+},
+{
+"section": "2C",
+"n": 10,
+"skill": "I can use parallel boxplots to display and describe the association between a numerical variable and a categorical variable.",
+"see": "Example 11",
+"ex": "2C",
+"exq": 4
+},
+{
+"section": "2D",
+"n": 11,
+"skill": "I can construct a scatterplot using a CAS calculator.",
+"see": "CAS 1",
+"ex": "2D",
+"exq": 2
+},
+{
+"section": "2E",
+"n": 12,
+"skill": "I can classify the direction, form and strength of an association from a scatterplot.",
+"see": "Example 13, Example 14, Example 15",
+"ex": "2E",
+"exq": 2
+},
+{
+"section": "2F",
+"n": 13,
+"skill": "I can use technology to determine the value of the correlation coefficient r.",
+"see": "CAS 2",
+"ex": "2F",
+"exq": 3
+},
+{
+"section": "2F",
+"n": 14,
+"skill": "I can classify the strength of a linear association as weak, moderate or strong based on the value of the correlation coefficient r.",
+"see": "Example 16",
+"ex": "2F",
+"exq": 4
+},
+{
+"section": "2G",
+"n": 15,
+"skill": "I can calculate the value of the coefficient of determination.",
+"see": "Example 17",
+"ex": "2G",
+"exq": 1
+},
+{
+"section": "2G",
+"n": 16,
+"skill": "I can use the coefficient of determination to assess the strength of the association in terms of the the explained variation.",
+"see": "Example 18",
+"ex": "2G",
+"exq": 2
+},
+{
+"section": "3A",
+"n": 1,
+"skill": "I can determine the equation of the least squares regression line using the formulas.",
+"see": "Example 1",
+"ex": "3A",
+"exq": 4
+},
+{
+"section": "3A",
+"n": 2,
+"skill": "I can determine the correlation coefficient from the slope of the least squares regression line using the formula.",
+"see": "Example 2",
+"ex": "3A",
+"exq": 7
+},
+{
+"section": "3A",
+"n": 3,
+"skill": "I can determine the equation of the least squares regression line using a CAS calculator.",
+"see": "CAS 1",
+"ex": "3A",
+"exq": 10
+},
+{
+"section": "3B",
+"n": 4,
+"skill": "I can interpret the slope and intercept of a regression line.",
+"see": "Example 3",
+"ex": "3B",
+"exq": 2
+},
+{
+"section": "3B",
+"n": 5,
+"skill": "I can use the regression line to make predictions.",
+"see": "Example 4",
+"ex": "3B",
+"exq": 4
+},
+{
+"section": "3B",
+"n": 6,
+"skill": "I can use the coefficient of determination to compare associations.",
+"see": "Example 5",
+"ex": "3B",
+"exq": 7
+},
+{
+"section": "3B",
+"n": 7,
+"skill": "I can calculate residual values.",
+"see": "Example 6",
+"ex": "3B",
+"exq": 8
+},
+{
+"section": "3B",
+"n": 8,
+"skill": "I can interpret a residual plot.",
+"see": "Example 7",
+"ex": "3B",
+"exq": 11
+},
+{
+"section": "3B",
+"n": 9,
+"skill": "I can write a report based on a regression analysis.",
+"see": "Example 8",
+"ex": "3B",
+"exq": 16
+},
+{
+"section": "3C",
+"n": 10,
+"skill": "I can use a CAS calculator to generate all of the analyses required for a regression analysis.",
+"see": "CAS 2",
+"ex": "3C",
+"exq": 1
+},
+{
+"section": "4A",
+"n": 1,
+"skill": "I can apply the x2 transformation.",
+"see": "Example 1",
+"ex": "4A",
+"exq": 2
+},
+{
+"section": "4A",
+"n": 2,
+"skill": "I can apply the y2 transformation.",
+"see": "Example 2",
+"ex": "4A",
+"exq": 5
+},
+{
+"section": "4B",
+"n": 3,
+"skill": "I can apply the log x transformation.",
+"see": "Example 3",
+"ex": "4B",
+"exq": 2
+},
+{
+"section": "4B",
+"n": 4,
+"skill": "I can apply the log y transformation.",
+"see": "Example 4",
+"ex": "4B",
+"exq": 5
+},
+{
+"section": "4C",
+"n": 5,
+"skill": "I can apply the reciprocal (1/x) transformation.",
+"see": "Example 5",
+"ex": "4C",
+"exq": 2
+},
+{
+"section": "4C",
+"n": 6,
+"skill": "I can apply the reciprocal (1/y) transformation.",
+"see": "Example 6",
+"ex": "4C",
+"exq": 4
+},
+{
+"section": "4D",
+"n": 7,
+"skill": "I can choose the best transformation to apply.",
+"see": "Example 7",
+"ex": "4D",
+"exq": 1
+},
+{
+"section": "5A",
+"n": 1,
+"skill": "I can construct a time series plot.",
+"see": "Example 1",
+"ex": "5A",
+"exq": 1
+},
+{
+"section": "5A",
+"n": 2,
+"skill": "I can identify trend in a time series plot.",
+"see": "Example 2",
+"ex": "5A",
+"exq": 4
+},
+{
+"section": "5A",
+"n": 3,
+"skill": "I can identify cycles in a time series plot.",
+"see": "Example 3",
+"ex": "5A",
+"exq": 5
+},
+{
+"section": "5A",
+"n": 4,
+"skill": "I can identify seasonality in a time series plot.",
+"see": "Example 4",
+"ex": "5A",
+"exq": 5
+},
+{
+"section": "5A",
+"n": 5,
+"skill": "I can identify structural change in a time series plot.",
+"see": "Example 5",
+"ex": "5A",
+"exq": 6
+},
+{
+"section": "5A",
+"n": 6,
+"skill": "I can identify outliers in a time series plot.",
+"see": "Example 6",
+"ex": "5A",
+"exq": 7
+},
+{
+"section": "5B",
+"n": 7,
+"skill": "I can smooth a time series using moving mean smoothing.",
+"see": "Example 7",
+"ex": "5B",
+"exq": 1
+},
+{
+"section": "5B",
+"n": 8,
+"skill": "I can smooth a time series using moving mean smoothing with centring.",
+"see": "Example 9",
+"ex": "5B",
+"exq": 6
+},
+{
+"section": "5C",
+"n": 9,
+"skill": "I can smooth a time series using moving median smoothing.",
+"see": "Example 12",
+"ex": "5C",
+"exq": 2
+},
+{
+"section": "5D",
+"n": 10,
+"skill": "I can interpret seasonal indices.",
+"see": "Example 14",
+"ex": "5D",
+"exq": 1
+},
+{
+"section": "5D",
+"n": 11,
+"skill": "I can use seasonal indices to deseasonalise and reseasonalise data.",
+"see": "Example 15",
+"ex": "5D",
+"exq": 2
+},
+{
+"section": "5D",
+"n": 12,
+"skill": "I can use seasonal indices to determine percentage change required to correct for seasonality.",
+"see": "Example 16",
+"ex": "5D",
+"exq": 4
+},
+{
+"section": "5D",
+"n": 13,
+"skill": "I can calculate seasonal indices from 1 year of data.",
+"see": "Example 17",
+"ex": "5D",
+"exq": 8
+},
+{
+"section": "5D",
+"n": 14,
+"skill": "I can calculate seasonal indices from several years of data.",
+"see": "Example 18",
+"ex": "5D",
+"exq": 10
+},
+{
+"section": "5D",
+"n": 15,
+"skill": "I can use seasonal indices to deseasonalise a time series.",
+"see": "Example 19",
+"ex": "5D",
+"exq": 11
+},
+{
+"section": "5E",
+"n": 16,
+"skill": "I can fit a trend line to a time series plot.",
+"see": "Example 21",
+"ex": "5E",
+"exq": 1
+},
+{
+"section": "5E",
+"n": 17,
+"skill": "I can use a trend line to forecast a future value (no seasonality).",
+"see": "Example 20",
+"ex": "5E",
+"exq": 1
+},
+{
+"section": "5E",
+"n": 18,
+"skill": "I can fit a trend line to a time series plot with seasonality.",
+"see": "Example 22",
+"ex": "5E",
+"exq": 4
+},
+{
+"section": "5E",
+"n": 19,
+"skill": "I can use a trend line to forecast a future value (with seasonality).",
+"see": "Example 23",
+"ex": "5E",
+"exq": 4
+},
+{
+"section": "7A",
+"n": 1,
+"skill": "I can generate a sequence of terms recursively.",
+"see": "Example 1 and 2",
+"ex": "7A",
+"exq": 1
+},
+{
+"section": "7A",
+"n": 2,
+"skill": "I can generate a sequence of numbers with a calculator.",
+"see": "Example 3",
+"ex": "7A",
+"exq": 3
+},
+{
+"section": "7A",
+"n": 3,
+"skill": "I can generate a sequence from a recurrence relation.",
+"see": "Example 4",
+"ex": "7A",
+"exq": 4
+},
+{
+"section": "7A",
+"n": 4,
+"skill": "I can use a calculator to generate sequences from recurrence relations.",
+"see": "Example 5",
+"ex": "7A",
+"exq": 5
+},
+{
+"section": "7A",
+"n": 5,
+"skill": "I can name terms in a sequence.",
+"see": "Example 6",
+"ex": "7A",
+"exq": 6
+},
+{
+"section": "7B",
+"n": 6,
+"skill": "I can graph the terms of a linear growth/decay sequence.",
+"see": "Example 7",
+"ex": "7B",
+"exq": 1
+},
+{
+"section": "7B",
+"n": 7,
+"skill": "I can model simple interest loans and investments with a recurrence relation.",
+"see": "Example 8",
+"ex": "7B",
+"exq": 2
+},
+{
+"section": "7B",
+"n": 8,
+"skill": "I can use a recurrence relation to analyse a simple interest investment.",
+"see": "Example 9",
+"ex": "7B",
+"exq": 4
+},
+{
+"section": "7B",
+"n": 9,
+"skill": "I can model flat rate depreciation using a recurrence relation.",
+"see": "Example 10",
+"ex": "7B",
+"exq": 7
+},
+{
+"section": "7B",
+"n": 10,
+"skill": "I can use a recurrence relation to analyse flat rate depreciation.",
+"see": "Example 11",
+"ex": "7B",
+"exq": 9
+},
+{
+"section": "7B",
+"n": 11,
+"skill": "I can model unit cost depreciation with a recurrence relation.",
+"see": "Example 12",
+"ex": "7B",
+"exq": 12
+},
+{
+"section": "7C",
+"n": 12,
+"skill": "I can convert a recurrence relation to an explicit rule.",
+"see": "Example 13",
+"ex": "7C",
+"exq": 1
+},
+{
+"section": "7C",
+"n": 13,
+"skill": "I can model a simple interest investment using an explicit rule.",
+"see": "Example 14",
+"ex": "7C",
+"exq": 2
+},
+{
+"section": "7C",
+"n": 14,
+"skill": "I can use a rule to determine the value of a simple interest investment.",
+"see": "Example 15",
+"ex": "7C",
+"exq": 4
+},
+{
+"section": "7C",
+"n": 15,
+"skill": "I can model flat rate depreciation of an asset with an explicit rule.",
+"see": "Example 16",
+"ex": "7C",
+"exq": 6
+},
+{
+"section": "7C",
+"n": 16,
+"skill": "I can use a rule for the flat rate depreciation of an asset.",
+"see": "Example 17",
+"ex": "7C",
+"exq": 8
+},
+{
+"section": "7C",
+"n": 17,
+"skill": "I can use an explicit rule for unit cost depreciation.",
+"see": "Example 18",
+"ex": "7C",
+"exq": 10
+},
+{
+"section": "7D",
+"n": 18,
+"skill": "I can graph the terms in a geometric sequence.",
+"see": "Example 19",
+"ex": "7D",
+"exq": 1
+},
+{
+"section": "7D",
+"n": 19,
+"skill": "I can model compound interest with a recurrence relation.",
+"see": "Example 20",
+"ex": "7D",
+"exq": 2
+},
+{
+"section": "7D",
+"n": 20,
+"skill": "I can model reducing balance depreciation with recurrence relations.",
+"see": "Example 21",
+"ex": "7D",
+"exq": 6
+},
+{
+"section": "7D",
+"n": 21,
+"skill": "I can use reducing balance depreciation with recurrence relations.",
+"see": "Example 22",
+"ex": "7D",
+"exq": 8
+},
+{
+"section": "7E",
+"n": 22,
+"skill": "I can write explicit rules for geometric growth and decay.",
+"see": "Example 23",
+"ex": "7E",
+"exq": 1
+},
+{
+"section": "7E",
+"n": 23,
+"skill": "I can use a rule to find the value of an investment after n years.",
+"see": "Example 24",
+"ex": "7E",
+"exq": 2
+},
+{
+"section": "7E",
+"n": 24,
+"skill": "I can calculate the value and total depreciation of an asset after a period of reducing balance depreciation.",
+"see": "Example 25",
+"ex": "7E",
+"exq": 5
+},
+{
+"section": "7E",
+"n": 25,
+"skill": "I can use a calculator to solve geometric growth and decay problems.",
+"see": "Example 26 and 27",
+"ex": "7E",
+"exq": 7
+},
+{
+"section": "7F",
+"n": 26,
+"skill": "I can convert nominal (annual) interest rates to compounding period interest rates.",
+"see": "Example 28",
+"ex": "7F",
+"exq": 1
+},
+{
+"section": "7F",
+"n": 27,
+"skill": "I can use recurrence relations to model loans with different compounding periods.",
+"see": "Example 29",
+"ex": "7F",
+"exq": 3
+},
+{
+"section": "7F",
+"n": 28,
+"skill": "I can model an investment that compounds monthly using recurrence relations.",
+"see": "Example 30",
+"ex": "7F",
+"exq": 4
+},
+{
+"section": "7F",
+"n": 29,
+"skill": "I can compare loans and investments using effective interest rates.",
+"see": "Example 31",
+"ex": "7F",
+"exq": 8
+},
+{
+"section": "7F",
+"n": 30,
+"skill": "I can calculate effective interest rates using a CAS calculator.",
+"see": "Example 32",
+"ex": "7F",
+"exq": 12
+},
+{
+"section": "8A",
+"n": 1,
+"skill": "I can generate a sequence from a recurrence relation that combines both geometric and linear growth or decay.",
+"see": "Example 1",
+"ex": "8A",
+"exq": 1
+},
+{
+"section": "8A",
+"n": 2,
+"skill": "I can model compound interest investments with additions to the principal.",
+"see": "Example 2 and 3",
+"ex": "8A",
+"exq": 2
+},
+{
+"section": "8A",
+"n": 3,
+"skill": "I can use a recurrence relation to analyse compound interest investments with additions to the principal.",
+"see": "Example 4",
+"ex": "8A",
+"exq": 8
+},
+{
+"section": "8A",
+"n": 4,
+"skill": "I can determine the annual interest rate from a recurrence relation.",
+"see": "Example 5",
+"ex": "8A",
+"exq": 10
+},
+{
+"section": "8B",
+"n": 5,
+"skill": "I can model a reducing balance loan with a recurrence relation.",
+"see": "Example 6 and 7",
+"ex": "8B",
+"exq": 1
+},
+{
+"section": "8B",
+"n": 6,
+"skill": "I can use a recurrence relation to analyse a reducing balance loan.",
+"see": "Example 8",
+"ex": "8B",
+"exq": 7
+},
+{
+"section": "8B",
+"n": 7,
+"skill": "I can model an annuity with a recurrence relation.",
+"see": "Example 9",
+"ex": "8B",
+"exq": 9
+},
+{
+"section": "8C",
+"n": 8,
+"skill": "I can apply the amortisation process.",
+"see": "Example 10",
+"ex": "8C",
+"exq": 1
+},
+{
+"section": "8C",
+"n": 9,
+"skill": "I can construct an amortisation table for a reducing balance loan.",
+"see": "Example 11",
+"ex": "8C",
+"exq": 1
+},
+{
+"section": "8C",
+"n": 10,
+"skill": "I can analyse an amortisation table for a reducing balance loan.",
+"see": "Example 12",
+"ex": "8C",
+"exq": 4
+},
+{
+"section": "8C",
+"n": 11,
+"skill": "I can analyse an amortisation table for an annuity to find the interest rate.",
+"see": "Example 13",
+"ex": "8C",
+"exq": 7
+},
+{
+"section": "8C",
+"n": 12,
+"skill": "I can interpret and construct an amortisation table for a compound interest investment with additional payments.",
+"see": "Example 14",
+"ex": "8C",
+"exq": 8
+},
+{
+"section": "8D",
+"n": 13,
+"skill": "I can find the final payment for a reducing balance loan or annuity.",
+"see": "Example 15",
+"ex": "8D",
+"exq": 1
+},
+{
+"section": "8D",
+"n": 14,
+"skill": "I can find the total payment made and the total interest paid.",
+"see": "Example 16",
+"ex": "8D",
+"exq": 5
+},
+{
+"section": "8D",
+"n": 15,
+"skill": "I can plot from an amortisation table.",
+"see": "Example 17",
+"ex": "8D",
+"exq": 9
+},
+{
+"section": "8E",
+"n": 16,
+"skill": "I can determine the value of an investment with regular additions made to the principal using a financial solver.",
+"see": "Example 18",
+"ex": "8E",
+"exq": 1
+},
+{
+"section": "8E",
+"n": 17,
+"skill": "I can determine the balance and final payment of a reducing balance loan after a given number of payments.",
+"see": "Example 19",
+"ex": "8E",
+"exq": 3
+},
+{
+"section": "8E",
+"n": 18,
+"skill": "I can determine the balance of an annuity using a finance solver.",
+"see": "Example 20",
+"ex": "8E",
+"exq": 7
+},
+{
+"section": "8F",
+"n": 19,
+"skill": "I can find the interest rate for an investment with additional payments.",
+"see": "Example 21",
+"ex": "8F",
+"exq": 1
+},
+{
+"section": "8F",
+"n": 20,
+"skill": "I can find the regular monthly payment and the time taken for an investment with additions to the principal.",
+"see": "Example 22",
+"ex": "8F",
+"exq": 2
+},
+{
+"section": "8F",
+"n": 21,
+"skill": "I can determine the payment amount, total cost and total amount of interest paid for a reducing balance loan.",
+"see": "Example 23",
+"ex": "8F",
+"exq": 5
+},
+{
+"section": "8F",
+"n": 22,
+"skill": "I can find the interest rate, time taken and regular payment for an annuity.",
+"see": "Example 24",
+"ex": "8F",
+"exq": 10
+},
+{
+"section": "8G",
+"n": 23,
+"skill": "I can find the value of an investment when the regular payment changes.",
+"see": "Example 25",
+"ex": "8G",
+"exq": 1
+},
+{
+"section": "8G",
+"n": 24,
+"skill": "I can analyse the impact of a change in the interest rate on a reducing balance loan, an annuity and an investment.",
+"see": "Example 26",
+"ex": "8G",
+"exq": 4
+},
+{
+"section": "8H",
+"n": 25,
+"skill": "I can find the repayment amount for an interest-only loan with and without finance solver.",
+"see": "Example 27",
+"ex": "8H",
+"exq": 1
+},
+{
+"section": "8H",
+"n": 26,
+"skill": "I can find the amount borrowed for an interest-only loan.",
+"see": "Example 28",
+"ex": "8H",
+"exq": 8
+},
+{
+"section": "8H",
+"n": 27,
+"skill": "I can find the interest rate for an interest-only loan.",
+"see": "Example 29",
+"ex": "8H",
+"exq": 11
+},
+{
+"section": "8I",
+"n": 28,
+"skill": "I can calculate the payment from a perpetuity.",
+"see": "Example 30",
+"ex": "8H",
+"exq": 1
+},
+{
+"section": "8I",
+"n": 29,
+"skill": "I can calculate the investment required to establish a perpetuity.",
+"see": "Example 31",
+"ex": "8H",
+"exq": 4
+},
+{
+"section": "8I",
+"n": 30,
+"skill": "I can calculate the interest rate of a perpetuity.",
+"see": "Example 32",
+"ex": "8H",
+"exq": 7
+},
+{
+"section": "10A",
+"n": 1,
+"skill": "I can state the order of a given matrix.",
+"see": "Example 1",
+"ex": "10A",
+"exq": 1
+},
+{
+"section": "10A",
+"n": 2,
+"skill": "I can find the transpose of a matrix.",
+"see": "Example 2",
+"ex": "10A",
+"exq": 4
+},
+{
+"section": "10A",
+"n": 3,
+"skill": "I can identify a matrix as being a square, column or row matrix.",
+"see": "Example 3",
+"ex": "10A",
+"exq": 5
+},
+{
+"section": "10A",
+"n": 4,
+"skill": "I can identify a square matrix as being an identity or diagonal or symmetric or upper/lower triangular matrix.",
+"see": "Example 4",
+"ex": "10A",
+"exq": 6
+},
+{
+"section": "10A",
+"n": 5,
+"skill": "I can identify the aij term in a matrix A.",
+"see": "Example 5",
+"ex": "10A",
+"exq": 7
+},
+{
+"section": "10A",
+"n": 6,
+"skill": "I can construct a matrix given a rule for aij .",
+"see": "Example 6",
+"ex": "10A",
+"exq": 8
+},
+{
+"section": "10A",
+"n": 7,
+"skill": "I can enter a matrix into a CAS calculator.",
+"see": "CAS 1",
+"ex": "10A",
+"exq": 13
+},
+{
+"section": "10B",
+"n": 8,
+"skill": "I can enter information from a table into a matrix.",
+"see": "Example 7",
+"ex": "10B",
+"exq": 1
+},
+{
+"section": "10B",
+"n": 9,
+"skill": "I can represent a network diagram by a matrix.",
+"see": "Example 9",
+"ex": "10B",
+"exq": 4
+},
+{
+"section": "10B",
+"n": 10,
+"skill": "I can interpret a matrix representing a network diagram.",
+"see": "Example 10",
+"ex": "10B",
+"exq": 6
+},
+{
+"section": "10C",
+"n": 11,
+"skill": "I can recognise when two matrices are equal and use this to solve problems.",
+"see": "Example 11",
+"ex": "10C",
+"exq": 1
+},
+{
+"section": "10C",
+"n": 12,
+"skill": "I can add two matrices of the same order together.",
+"see": "Example 12",
+"ex": "10C",
+"exq": 2
+},
+{
+"section": "10C",
+"n": 13,
+"skill": "I can subtract one matrix from another when they have the same order.",
+"see": "Example 13",
+"ex": "10C",
+"exq": 2
+},
+{
+"section": "10C",
+"n": 14,
+"skill": "I can multiply a matrix by a scalar.",
+"see": "Example 15",
+"ex": "10C",
+"exq": 3
+},
+{
+"section": "10C",
+"n": 16,
+"skill": "I can use addition, subtraction and scalar multiplication to process data.",
+"see": "Example 16",
+"ex": "10C",
+"exq": 5
+},
+{
+"section": "10D",
+"n": 17,
+"skill": "I can determine if the product of two given matrices is defined.",
+"see": "Example 17",
+"ex": "10D",
+"exq": 1
+},
+{
+"section": "10D",
+"n": 18,
+"skill": "I can determine the order of a matrix product.",
+"see": "Example 18",
+"ex": "10D",
+"exq": 1
+},
+{
+"section": "10D",
+"n": 19,
+"skill": "I can multiply a row matrix by a column matrix by hand.",
+"see": "Example 19",
+"ex": "10D",
+"exq": 2
+},
+{
+"section": "10D",
+"n": 20,
+"skill": "I can multiply a rectangular matrix by a column matrix by hand.",
+"see": "Example 20",
+"ex": "10D",
+"exq": 2
+},
+{
+"section": "10D",
+"n": 21,
+"skill": "I can use summing matrices to sum the rows or columns of a matrix.",
+"see": "Example 21",
+"ex": "10D",
+"exq": 4
+},
+{
+"section": "10D",
+"n": 22,
+"skill": "I can undertake multiplications of matrices to solve practical problems.",
+"see": "Example 22",
+"ex": "10D",
+"exq": 8
+},
+{
+"section": "10D",
+"n": 23,
+"skill": "I can evaluate matrix expressions involving powers.",
+"see": "Example 23",
+"ex": "10D",
+"exq": 11
+},
+{
+"section": "10E",
+"n": 24,
+"skill": "I can recognise that two matrices are inverses if their product is the identity matrix.",
+"see": "Example 24",
+"ex": "10E",
+"exq": 2
+},
+{
+"section": "10E",
+"n": 25,
+"skill": "I can evaluate the determinant of a 2 \u00d7 2 matrix by hand.",
+"see": "Example 25",
+"ex": "10E",
+"exq": 3
+},
+{
+"section": "10E",
+"n": 26,
+"skill": "I can calculate the inverse of a 2 \u00d7 2 matrix by hand.",
+"see": "Example 26",
+"ex": "10E",
+"exq": 4
+},
+{
+"section": "10E",
+"n": 27,
+"skill": "I can calculate the inverse and determinant of a n \u00d7 n matrix using CAS.",
+"see": "CAS 4",
+"ex": "10E",
+"exq": 4
+},
+{
+"section": "10E",
+"n": 28,
+"skill": "I can solve simple matrix equations.",
+"see": "Example 27",
+"ex": "10E",
+"exq": 5
+},
+{
+"section": "10F",
+"n": 29,
+"skill": "I can use a permutation matrix to rearrange the elements of a column or row matrix.",
+"see": "Example 28",
+"ex": "10F",
+"exq": 2
+},
+{
+"section": "10F",
+"n": 30,
+"skill": "I can construct a permutation matrix to rearrange the elements of a column or row matrix in a given order.",
+"see": "Example 29",
+"ex": "10F",
+"exq": 3
+},
+{
+"section": "10F",
+"n": 31,
+"skill": "I can find the inverse of a permutation matrix.",
+"see": "Example 30",
+"ex": "10F",
+"exq": 4
+},
+{
+"section": "10F",
+"n": 32,
+"skill": "I can construct a communication matrix from information given in written form or a diagram.",
+"see": "Example 31",
+"ex": "10F",
+"exq": 5
+},
+{
+"section": "10G",
+"n": 33,
+"skill": "I can construct a dominance matrix from information given in written form or a diagram.",
+"see": "Example 32",
+"ex": "10G",
+"exq": 1
+},
+{
+"section": "11A",
+"n": 1,
+"skill": "I can set up a transition matrix from a diagram.",
+"see": "Example 1",
+"ex": "11A",
+"exq": 1
+},
+{
+"section": "11A",
+"n": 2,
+"skill": "I can set up a transition matrix from a written information.",
+"see": "Example 2",
+"ex": "11A",
+"exq": 2
+},
+{
+"section": "11B",
+"n": 3,
+"skill": "I can interpret a transition matrix and a transition diagram.",
+"see": "Example 3",
+"ex": "11B",
+"exq": 1
+},
+{
+"section": "11C",
+"n": 4,
+"skill": "I can use a recurrence relation to calculate state matrices step by step",
+"see": "Example 4",
+"ex": "11C",
+"exq": 1
+},
+{
+"section": "11C",
+"n": 5,
+"skill": "I can use a recurrence relation Sn+1 = Tn S0 to determine the nth state.",
+"see": "Example 5",
+"ex": "11C",
+"exq": 2
+},
+{
+"section": "11C",
+"n": 6,
+"skill": "I can use the inverse of a transition matrix.",
+"see": "Example 6",
+"ex": "11C",
+"exq": 4
+},
+{
+"section": "11C",
+"n": 7,
+"skill": "I can estimate steady state solution for suitable transition matrices.",
+"see": "Example 7",
+"ex": "11C",
+"exq": 4
+},
+{
+"section": "11D",
+"n": 8,
+"skill": "I can use the matrix recurrence relation S0 = initial state matrix, Sn+1 = TSn + B.",
+"see": "Example 8",
+"ex": "11D",
+"exq": 1
+},
+{
+"section": "11E",
+"n": 9,
+"skill": "I can determine state matrices and construct life cycle diagrams in situations modelled by Leslie matrices.",
+"see": "Example 9",
+"ex": "11E",
+"exq": 1
+},
+{
+"section": "11E",
+"n": 10,
+"skill": "I can enter information into a Leslie matrix from written information.",
+"see": "Example 10",
+"ex": "11E",
+"exq": 2
+},
+{
+"section": "11E",
+"n": 11,
+"skill": "I can use numerical techniques to consider the limiting behaviour of Leslie matrices.",
+"see": "Example 12",
+"ex": "11E",
+"exq": 3
+},
+{
+"section": "11E",
+"n": 12,
+"skill": "I can identify the properties of a Leslie matrix and the state matrices when there is a constant rate.",
+"see": "Example 13",
+"ex": "11E",
+"exq": 4
+},
+{
+"section": "13A",
+"n": 1,
+"skill": "I can identify edges, vertices and loops in a graph.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 2,
+"skill": "I can determine the degree of a vertex in a graph.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 3,
+"skill": "I can define and identify simple graphs, isolated vertices, degenerate graphs, connected graphs, bridges and subgraphs.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 4,
+"skill": "I can recognise isomorphic graphs. See Exercise 13A Question 3"
+},
+{
+"section": "13A",
+"n": 5,
+"skill": "I can define planar graphs.",
+"see": "Example 2",
+"ex": "13A",
+"exq": 5
+},
+{
+"section": "13A",
+"n": 6,
+"skill": "I can redraw graphs in planar form.",
+"see": "Example 3",
+"ex": "13A",
+"exq": 4
+},
+{
+"section": "13A",
+"n": 7,
+"skill": "I can use Euler\u2019s formula.",
+"see": "Example 4",
+"ex": "13A",
+"exq": 6
+},
+{
+"section": "13B",
+"n": 8,
+"skill": "I can write an adjacency matrix from a graph. See Exercise 13B Question 1"
+},
+{
+"section": "13B",
+"n": 9,
+"skill": "I can construct a graph from an adjacency matrix.",
+"see": "Example 5",
+"ex": "13B",
+"exq": 2
+},
+{
+"section": "13C",
+"n": 10,
+"skill": "I can define walks, trails, paths, circuits and cycles through a graph.",
+"see": "Example 6",
+"ex": "13C",
+"exq": 1
+},
+{
+"section": "13C",
+"n": 11,
+"skill": "I can identify Eulerian trails and circuits through graphs.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 3
+},
+{
+"section": "13C",
+"n": 12,
+"skill": "I can determine whether an Eulerian trail or circuit exists in a graph.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 3
+},
+{
+"section": "13C",
+"n": 13,
+"skill": "I can identify Hamiltonian paths and cycles through graphs.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 4
+},
+{
+"section": "13D",
+"n": 14,
+"skill": "I can define a weighted graph. See Exercise 13D Question 1"
+},
+{
+"section": "13D",
+"n": 15,
+"skill": "I can calculate the shortest path from one vertex to another by inspection.",
+"see": "Example 8",
+"ex": "13D",
+"exq": 3
+},
+{
+"section": "13D",
+"n": 16,
+"skill": "I can calculate the shortest path from one vertex to another using Dijkstra\u2019s algorithm.",
+"see": "Example 9",
+"ex": "13D",
+"exq": 9
+},
+{
+"section": "13E",
+"n": 17,
+"skill": "I can define tree, spanning tree, minimum spanning tree.",
+"see": "Example 11",
+"ex": "13E",
+"exq": 1
+},
+{
+"section": "13E",
+"n": 18,
+"skill": "I can draw a minimum spanning tree using Prim\u2019s algorithm.",
+"see": "Example 12",
+"ex": "13E",
+"exq": 2
+},
+{
+"section": "11A",
+"n": 1,
+"skill": "I can set up a transition matrix from a diagram.",
+"see": "Example 1",
+"ex": "11A",
+"exq": 1
+},
+{
+"section": "11A",
+"n": 2,
+"skill": "I can set up a transition matrix from a written information.",
+"see": "Example 2",
+"ex": "11A",
+"exq": 2
+},
+{
+"section": "11B",
+"n": 3,
+"skill": "I can interpret a transition matrix and a transition diagram.",
+"see": "Example 3",
+"ex": "11B",
+"exq": 1
+},
+{
+"section": "11C",
+"n": 4,
+"skill": "I can use a recurrence relation to calculate state matrices step by step",
+"see": "Example 4",
+"ex": "11C",
+"exq": 1
+},
+{
+"section": "11C",
+"n": 5,
+"skill": "I can use a recurrence relation Sn+1 = Tn S0 to determine the nth state.",
+"see": "Example 5",
+"ex": "11C",
+"exq": 2
+},
+{
+"section": "11C",
+"n": 6,
+"skill": "I can use the inverse of a transition matrix.",
+"see": "Example 6",
+"ex": "11C",
+"exq": 4
+},
+{
+"section": "11C",
+"n": 7,
+"skill": "I can estimate steady state solution for suitable transition matrices.",
+"see": "Example 7",
+"ex": "11C",
+"exq": 4
+},
+{
+"section": "11D",
+"n": 8,
+"skill": "I can use the matrix recurrence relation S0 = initial state matrix, Sn+1 = TSn + B.",
+"see": "Example 8",
+"ex": "11D",
+"exq": 1
+},
+{
+"section": "11E",
+"n": 9,
+"skill": "I can determine state matrices and construct life cycle diagrams in situations modelled by Leslie matrices.",
+"see": "Example 9",
+"ex": "11E",
+"exq": 1
+},
+{
+"section": "11E",
+"n": 10,
+"skill": "I can enter information into a Leslie matrix from written information.",
+"see": "Example 10",
+"ex": "11E",
+"exq": 2
+},
+{
+"section": "11E",
+"n": 11,
+"skill": "I can use numerical techniques to consider the limiting behaviour of Leslie matrices.",
+"see": "Example 12",
+"ex": "11E",
+"exq": 3
+},
+{
+"section": "11E",
+"n": 12,
+"skill": "I can identify the properties of a Leslie matrix and the state matrices when there is a constant rate.",
+"see": "Example 13",
+"ex": "11E",
+"exq": 4
+},
+{
+"section": "13A",
+"n": 1,
+"skill": "I can identify edges, vertices and loops in a graph.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 2,
+"skill": "I can determine the degree of a vertex in a graph.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 3,
+"skill": "I can define and identify simple graphs, isolated vertices, degenerate graphs, connected graphs, bridges and subgraphs.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 4,
+"skill": "I can recognise isomorphic graphs. See Exercise 13A Question 3"
+},
+{
+"section": "13A",
+"n": 5,
+"skill": "I can define planar graphs.",
+"see": "Example 2",
+"ex": "13A",
+"exq": 5
+},
+{
+"section": "13A",
+"n": 6,
+"skill": "I can redraw graphs in planar form.",
+"see": "Example 3",
+"ex": "13A",
+"exq": 4
+},
+{
+"section": "13A",
+"n": 7,
+"skill": "I can use Euler\u2019s formula.",
+"see": "Example 4",
+"ex": "13A",
+"exq": 6
+},
+{
+"section": "13B",
+"n": 8,
+"skill": "I can write an adjacency matrix from a graph. See Exercise 13B Question 1"
+},
+{
+"section": "13B",
+"n": 9,
+"skill": "I can construct a graph from an adjacency matrix.",
+"see": "Example 5",
+"ex": "13B",
+"exq": 2
+},
+{
+"section": "13C",
+"n": 10,
+"skill": "I can define walks, trails, paths, circuits and cycles through a graph.",
+"see": "Example 6",
+"ex": "13C",
+"exq": 1
+},
+{
+"section": "13C",
+"n": 11,
+"skill": "I can identify Eulerian trails and circuits through graphs.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 3
+},
+{
+"section": "13C",
+"n": 12,
+"skill": "I can determine whether an Eulerian trail or circuit exists in a graph.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 3
+},
+{
+"section": "13C",
+"n": 13,
+"skill": "I can identify Hamiltonian paths and cycles through graphs.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 4
+},
+{
+"section": "13D",
+"n": 14,
+"skill": "I can define a weighted graph. See Exercise 13D Question 1"
+},
+{
+"section": "13D",
+"n": 15,
+"skill": "I can calculate the shortest path from one vertex to another by inspection.",
+"see": "Example 8",
+"ex": "13D",
+"exq": 3
+},
+{
+"section": "13D",
+"n": 16,
+"skill": "I can calculate the shortest path from one vertex to another using Dijkstra\u2019s algorithm.",
+"see": "Example 9",
+"ex": "13D",
+"exq": 9
+},
+{
+"section": "13E",
+"n": 17,
+"skill": "I can define tree, spanning tree, minimum spanning tree.",
+"see": "Example 11",
+"ex": "13E",
+"exq": 1
+},
+{
+"section": "13E",
+"n": 18,
+"skill": "I can draw a minimum spanning tree using Prim\u2019s algorithm.",
+"see": "Example 12",
+"ex": "13E",
+"exq": 2
+},
+{
+"section": "13A",
+"n": 1,
+"skill": "I can identify edges, vertices and loops in a graph.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 2,
+"skill": "I can determine the degree of a vertex in a graph.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 3,
+"skill": "I can define and identify simple graphs, isolated vertices, degenerate graphs, connected graphs, bridges and subgraphs.",
+"see": "Example 1",
+"ex": "13A",
+"exq": 1
+},
+{
+"section": "13A",
+"n": 4,
+"skill": "I can recognise isomorphic graphs. See Exercise 13A Question 3"
+},
+{
+"section": "13A",
+"n": 5,
+"skill": "I can define planar graphs.",
+"see": "Example 2",
+"ex": "13A",
+"exq": 5
+},
+{
+"section": "13A",
+"n": 6,
+"skill": "I can redraw graphs in planar form.",
+"see": "Example 3",
+"ex": "13A",
+"exq": 4
+},
+{
+"section": "13A",
+"n": 7,
+"skill": "I can use Euler\u2019s formula.",
+"see": "Example 4",
+"ex": "13A",
+"exq": 6
+},
+{
+"section": "13B",
+"n": 8,
+"skill": "I can write an adjacency matrix from a graph. See Exercise 13B Question 1"
+},
+{
+"section": "13B",
+"n": 9,
+"skill": "I can construct a graph from an adjacency matrix.",
+"see": "Example 5",
+"ex": "13B",
+"exq": 2
+},
+{
+"section": "13C",
+"n": 10,
+"skill": "I can define walks, trails, paths, circuits and cycles through a graph.",
+"see": "Example 6",
+"ex": "13C",
+"exq": 1
+},
+{
+"section": "13C",
+"n": 11,
+"skill": "I can identify Eulerian trails and circuits through graphs.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 3
+},
+{
+"section": "13C",
+"n": 12,
+"skill": "I can determine whether an Eulerian trail or circuit exists in a graph.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 3
+},
+{
+"section": "13C",
+"n": 13,
+"skill": "I can identify Hamiltonian paths and cycles through graphs.",
+"see": "Example 7",
+"ex": "13C",
+"exq": 4
+},
+{
+"section": "13D",
+"n": 14,
+"skill": "I can define a weighted graph. See Exercise 13D Question 1"
+},
+{
+"section": "13D",
+"n": 15,
+"skill": "I can calculate the shortest path from one vertex to another by inspection.",
+"see": "Example 8",
+"ex": "13D",
+"exq": 3
+},
+{
+"section": "13D",
+"n": 16,
+"skill": "I can calculate the shortest path from one vertex to another using Dijkstra\u2019s algorithm.",
+"see": "Example 9",
+"ex": "13D",
+"exq": 9
+},
+{
+"section": "13E",
+"n": 17,
+"skill": "I can define tree, spanning tree, minimum spanning tree.",
+"see": "Example 11",
+"ex": "13E",
+"exq": 1
+},
+{
+"section": "13E",
+"n": 18,
+"skill": "I can draw a minimum spanning tree using Prim\u2019s algorithm.",
+"see": "Example 12",
+"ex": "13E",
+"exq": 2
+},
+{
+"section": "14A",
+"n": 1,
+"skill": "I can define and describe a directed graph.",
+"see": "Example 1",
+"ex": "14A",
+"exq": 1
+},
+{
+"section": "14A",
+"n": 2,
+"skill": "I can determine the maximum flow for any section of sequential edges of a directed graph.",
+"see": "Example 4",
+"ex": "14A",
+"exq": 4
+},
+{
+"section": "14A",
+"n": 3,
+"skill": "I can determine cut capacities.",
+"see": "Example 2",
+"ex": "14A",
+"exq": 2
+},
+{
+"section": "14A",
+"n": 4,
+"skill": "I can determine the maximum flow as equal to the minimum cut capacity.",
+"see": "Example 3",
+"ex": "14A",
+"exq": 5
+},
+{
+"section": "14B",
+"n": 5,
+"skill": "I can draw directed and weighted bipartite graphs. See Exercise 14B Question 4"
+},
+{
+"section": "14B",
+"n": 6,
+"skill": "I can use the Hungarian algorithm to determine an optimum allocation in order to minimise cost. See Exercise 14B Question 2"
+},
+{
+"section": "14C",
+"n": 7,
+"skill": "I can create an activity network from a precedence table.",
+"see": "Example 5",
+"ex": "14C",
+"exq": 5
+},
+{
+"section": "14C",
+"n": 8,
+"skill": "I can write down a precedence table from an activity network. See Exercise 14C Question 1"
+},
+{
+"section": "14C",
+"n": 9,
+"skill": "I can decide when to use dummy activities in an activity network.",
+"see": "Example 6",
+"ex": "14C",
+"exq": 3
+},
+{
+"section": "14D",
+"n": 10,
+"skill": "I can use forward scanning to determine the earliest starting time of activities in an activity network.",
+"see": "Example 8",
+"ex": "14D",
+"exq": 12
+},
+{
+"section": "14D",
+"n": 11,
+"skill": "I can use backward scanning to determine the latest starting time of activities in an activity network.",
+"see": "Example 8",
+"ex": "14D",
+"exq": 12
+},
+{
+"section": "14D",
+"n": 12,
+"skill": "I can determine the float time for activities in an activity network.",
+"see": "Example 8",
+"ex": "14D",
+"exq": 7
+},
+{
+"section": "14D",
+"n": 13,
+"skill": "I can determine the overall minimum completion time for a project using critical path analysis.",
+"see": "Example 8",
+"ex": "14D",
+"exq": 8
+},
+{
+"section": "14D",
+"n": 14,
+"skill": "I can determine the critical path for an activity network.",
+"see": "Example 8",
+"ex": "14D",
+"exq": 9
+},
+{
+"section": "14E",
+"n": 15,
+"skill": "I can use crashing to reduce the completion time of a project.",
+"see": "Example 9",
+"ex": "14E",
+"exq": 1
+}
+]
